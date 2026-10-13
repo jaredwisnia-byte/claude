@@ -1,11 +1,12 @@
 {
   "name": "midnight-watch",
   "private": true,
-  "description": "Push notifier for Midnight Watch",
+  "description": "Event collector and push notifier for Midnight Watch",
   "scripts": {
-    "notify": "node scripts/notify.mjs"
+    "collect": "node scripts/collect.mjs"
   },
   "dependencies": {
+    "fast-xml-parser": "4.5.0",
     "web-push": "3.6.7"
   }
 }

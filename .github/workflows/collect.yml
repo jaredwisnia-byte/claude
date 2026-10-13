@@ -1,0 +1,52 @@
+name: Collect events
+
+on:
+  schedule:
+    # GitHub's shortest schedule; runs are often delayed a few minutes under load.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PUSH_SUBSCRIPTION: ${{ secrets.PUSH_SUBSCRIPTION }}
+      VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+      APP_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+      OUT_DIR: out
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Load previous run's data
+        run: |
+          mkdir -p out
+          if git fetch --depth=1 origin data 2>/dev/null; then
+            git show origin/data:seen.json > out/seen.json 2>/dev/null || rm -f out/seen.json
+          fi
+
+      - run: node scripts/collect.mjs
+
+      # The data branch holds a single commit that is replaced on every run.
+      - name: Publish to data branch
+        working-directory: out
+        run: |
+          git init -q -b data
+          git add events.json seen.json
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -qm "Update events"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data

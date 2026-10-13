@@ -4,10 +4,10 @@ A 24-hour countdown clock in the style of the Bulletin of the Atomic Scientists'
 
 - **Dial:** the full face is 24 hours, with midnight at the top. The hand shows the current time, and the shaded arc is the time left until midnight.
 - **Markers:** a solid red pip is an event since midnight. A hollow pip is an event from before midnight. Tap a marker to jump to its entry in the ledger.
-- **Events:** six categories: Politics, Science, Economics, Finance, Engineering and Geopolitics. Each one pulls headlines from major outlets that match its keywords, using the [GDELT](https://www.gdeltproject.org/) news index. On open, the app loads the last 8 hours and then checks again every minute. Syndicated duplicates are merged, and anything older than 8 hours is dropped. Filter chips limit the list and dial to a single category.
-- **Notifications:** while the app is open, new events trigger a notification. While it's closed, a scheduled GitHub Actions job (`.github/workflows/notify.yml`) checks every 5 minutes and sends Web Push alerts. That's GitHub's shortest schedule, and runs can be late.
+- **Events:** a scheduled GitHub Actions job (`.github/workflows/collect.yml`) reads RSS feeds from BBC, NYT, the Guardian, NPR, Al Jazeera, France 24, CNBC, MarketWatch, Ars Technica and IEEE Spectrum. It sorts headlines into six categories (Politics, Science, Economics, Finance, Engineering, Geopolitics) by keyword and drops stories that match none. The last 8 hours of events are published as `events.json` on the repo's `data` branch, and the app checks that file every minute. Filter chips limit the list and dial to a single category.
+- **Notifications:** the same job sends a Web Push alert for each new event, so they arrive even when the app is closed. While the app is open, it also notifies you directly.
 
-Categories, keywords and outlets live in `config.js`.
+The job runs every 5 minutes, GitHub's shortest schedule, and runs can be late. Categories, keywords and feeds live in `config.js`.
 
 ## Install on iPhone
 
@@ -22,7 +22,7 @@ Categories, keywords and outlets live in `config.js`.
 3. In the repo, go to **Settings → Secrets and variables → Actions** and add two repository secrets:
    - `PUSH_SUBSCRIPTION`: the push key you just copied.
    - `VAPID_PRIVATE_KEY`: the private signing key that pairs with `VAPID_PUBLIC_KEY` in `config.js`.
-4. **Actions → Push notifications → Run workflow** starts it right away. The first run only records existing events; later runs notify you about new ones. If a run finds more than 3 new events, they arrive as a single summary.
+4. Notifications start with the next scheduled run. **Actions → Collect events → Run workflow** starts one right away. If a run finds more than 3 new events, they arrive as a single summary.
 
 GitHub pauses scheduled workflows after 60 days without repo activity. Re-enable it from the Actions tab if that happens.
 

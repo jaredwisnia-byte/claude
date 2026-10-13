@@ -5,15 +5,12 @@
   const DAY_MS = 24 * 60 * 60 * 1000;
   const WINDOW_MS = CFG.WINDOW_HOURS * 60 * 60 * 1000;
   const POLL_MS = CFG.POLL_SECONDS * 1000;
-  const STORE_KEY = "midnight-watch.events.v2";
+  const STORE_KEY = "midnight-watch.events.v3";
   const FILTER_KEY = "midnight-watch.filter";
-  // Used only if the browser can't reach GDELT directly (e.g. a CORS failure).
-  const FALLBACK_PROXY = "https://api.allorigins.win/raw?url=";
   const CATEGORY_LABEL = Object.fromEntries(CFG.CATEGORIES.map((c) => [c.id, c.label]));
 
   const $ = (id) => document.getElementById(id);
   const SVG_NS = "http://www.w3.org/2000/svg";
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   let events = loadEvents();
   let filter = loadFilter();
@@ -135,100 +132,49 @@
 
   // ---------- events ----------
 
-  function merge(articles, category) {
-    const known = new Set(events.map((e) => e.key));
-    const added = [];
-    const now = Date.now();
-    for (const a of articles) {
-      const ts = CFG.parseSeenDate(a.seendate);
-      const title = (a.title || "").trim();
-      if (!title || !a.url || !Number.isFinite(ts)) continue;
-      // Skip what prune() would drop, or it would come back as "new" every poll.
-      if (now - ts >= WINDOW_MS || ts > now + 5 * 60e3) continue;
-      const key = CFG.titleKey(title);
-      if (known.has(key)) continue;
-      known.add(key);
-      let source = a.domain;
-      if (!source) {
-        try { source = new URL(a.url).hostname; } catch { continue; }
-      }
-      const ev = { key, title, url: a.url, source, ts, category };
-      events.push(ev);
-      added.push(ev);
-    }
-    return added;
-  }
-
   function prune(now) {
     events = events.filter((e) => now - e.ts < WINDOW_MS && e.ts <= now + 5 * 60e3);
     events.sort((a, b) => b.ts - a.ts);
   }
 
-  async function fetchJson(url) {
-    const get = async (u) => {
-      const res = await fetch(u, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      // GDELT returns plain-text errors (e.g. rate limits) with a 200 status.
-      try {
-        return JSON.parse(text);
-      } catch {
-        throw new Error(text.slice(0, 120) || "Bad response");
-      }
-    };
-    try {
-      return await get(url);
-    } catch (direct) {
-      try {
-        return await get(FALLBACK_PROXY + encodeURIComponent(url));
-      } catch {
-        throw direct;
-      }
-    }
+  // The collector workflow republishes events.json every few minutes; the query
+  // string keeps browser and CDN caches from serving an older copy.
+  async function fetchFeed() {
+    const res = await fetch(`${CFG.DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
+    if (res.status === 404) throw new Error("no data published yet");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data.events)) throw new Error("bad data");
+    return data;
   }
 
-  // Fetches every category's last WINDOW_HOURS of headlines, one request at a time
-  // to respect GDELT's rate limit, rendering as each category lands.
   async function poll() {
     if (fetching) return;
     fetching = true;
     $("refresh").disabled = true;
-    const isFirstLoad = events.length === 0;
-    const newThisPoll = [];
-    const failures = [];
-    let lastError = null;
-
-    for (const [i, cat] of CFG.CATEGORIES.entries()) {
-      if (i > 0) await sleep(CFG.REQUEST_GAP_MS);
-      setStatus(`Checking ${cat.label.toLowerCase()}…`);
-      try {
-        const data = await fetchJson(CFG.gdeltUrl(cat, CFG.WINDOW_HOURS));
-        const added = merge(data.articles || [], cat.id);
-        newThisPoll.push(...added);
-        if (!isFirstLoad) for (const ev of added) freshKeys.add(ev.key);
-        prune(Date.now());
-        saveEvents();
-        render();
-      } catch (err) {
-        failures.push(cat.label);
-        lastError = err;
-      }
+    setStatus("Checking for new events…");
+    try {
+      const data = await fetchFeed();
+      const isFirstLoad = events.length === 0;
+      const known = new Set(events.map((e) => e.key));
+      const added = data.events.filter((e) => !known.has(e.key) && CATEGORY_LABEL[e.category]);
+      // Keep events the server has since dropped (e.g. pushed past its cap) until they age out.
+      events = [...added, ...events];
+      prune(Date.now());
+      saveEvents();
+      if (!isFirstLoad) for (const ev of added) freshKeys.add(ev.key);
+      lastFetch = new Date();
+      let msg = `Checked ${timeFmt.format(lastFetch)} · news as of ${timeFmt.format(data.updated)}`;
+      if (!isFirstLoad && added.length) msg += ` · ${added.length} new`;
+      setStatus(msg);
+      if (!isFirstLoad && added.length) notifyLocal(added);
+    } catch (err) {
+      setStatus(`Couldn't load events (${err.message}). Showing saved events.`, true);
+    } finally {
+      fetching = false;
+      $("refresh").disabled = false;
+      render();
     }
-
-    lastFetch = new Date();
-    if (failures.length === CFG.CATEGORIES.length) {
-      setStatus(`Couldn't reach the news feed (${lastError.message}). Showing saved events.`, true);
-    } else {
-      let msg = `Updated ${timeFmt.format(lastFetch)}`;
-      if (!isFirstLoad && newThisPoll.length) msg += ` · ${newThisPoll.length} new`;
-      if (failures.length) msg += ` · couldn't load ${failures.join(", ")}`;
-      setStatus(msg, failures.length > 0);
-    }
-    if (!isFirstLoad && newThisPoll.length) notifyLocal(newThisPoll);
-
-    fetching = false;
-    $("refresh").disabled = false;
-    render();
   }
 
   function setStatus(text, isError = false) {

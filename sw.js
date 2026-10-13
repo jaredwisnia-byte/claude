@@ -1,6 +1,6 @@
 // Network-first for the app shell so updates land immediately; cache is the offline fallback.
 // News requests are never cached here — saved events live in localStorage.
-const CACHE = "midnight-watch-v2";
+const CACHE = "midnight-watch-v3";
 const SHELL = ["./", "index.html", "style.css", "config.js", "app.js", "manifest.webmanifest", "icon.svg", "apple-touch-icon.png"];
 
 self.addEventListener("install", (e) => {

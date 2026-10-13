@@ -45,14 +45,27 @@
       <h2 id="ledger-title">Event ledger</h2>
       <button id="refresh" class="refresh" type="button">Refresh</button>
     </div>
+    <div id="filters" class="filters" role="group" aria-label="Filter by category"></div>
     <p id="status" class="status" role="status">Loading…</p>
     <ol id="events" class="events"></ol>
   </section>
 
+  <section class="notify" aria-labelledby="notify-title">
+    <h2 id="notify-title">Notifications</h2>
+    <p id="notify-note" class="notify-note"></p>
+    <button id="notify-btn" class="refresh" type="button" hidden>Enable notifications</button>
+    <div id="notify-sub" class="notify-sub" hidden>
+      <p class="notify-note">To get alerts while the app is closed, add this key to the GitHub repo as a secret named <code>PUSH_SUBSCRIPTION</code> (Settings → Secrets and variables → Actions → New repository secret).</p>
+      <textarea id="notify-sub-text" readonly rows="4" aria-label="Push key"></textarea>
+      <button id="notify-copy" class="refresh" type="button">Copy push key</button>
+    </div>
+  </section>
+
   <footer class="foot">
-    Headlines from the <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> global news index, checked every 5 minutes.
+    Headlines from the <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> global news index, checked every minute.
   </footer>
 </main>
+<script src="config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

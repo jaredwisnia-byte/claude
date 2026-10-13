@@ -1,0 +1,60 @@
+name: Push notifications
+
+on:
+  schedule:
+    # GitHub's shortest schedule; runs are often delayed a few minutes under load.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: notify
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PUSH_SUBSCRIPTION: ${{ secrets.PUSH_SUBSCRIPTION }}
+      VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+      APP_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+    steps:
+      - name: Check secrets
+        id: secrets
+        run: |
+          if [ -z "$PUSH_SUBSCRIPTION" ] || [ -z "$VAPID_PRIVATE_KEY" ]; then
+            echo "::notice::PUSH_SUBSCRIPTION or VAPID_PRIVATE_KEY secret not set; skipping."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ready == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.secrets.outputs.ready == 'true'
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+        if: steps.secrets.outputs.ready == 'true'
+
+      - name: Restore seen events
+        if: steps.secrets.outputs.ready == 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: .notify-state
+          key: notify-state-${{ github.run_id }}
+          restore-keys: notify-state-
+
+      - run: node scripts/notify.mjs
+        if: steps.secrets.outputs.ready == 'true'
+
+      - name: Save seen events
+        if: steps.secrets.outputs.ready == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .notify-state
+          key: notify-state-${{ github.run_id }}

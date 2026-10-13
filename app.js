@@ -1,42 +1,22 @@
 (() => {
   "use strict";
 
-  const POLL_MS = 5 * 60 * 1000;
-  const WINDOW_MS = 24 * 60 * 60 * 1000;
-  const STORE_KEY = "midnight-watch.events.v1";
-
-  // GDELT DOC 2.0 API: English-language articles from major outlets whose
-  // text matches geopolitical keywords, ranked by relevance and recency.
-  const KEYWORDS = [
-    "sanctions", "missile", "nuclear", "invasion", "airstrike", "coup",
-    "ceasefire", "troops", "military", '"peace talks"', "annexation",
-    "blockade", '"state of emergency"', "NATO", '"security council"',
-  ];
-  const OUTLETS = [
-    "reuters.com", "apnews.com", "bbc.com", "bbc.co.uk", "aljazeera.com",
-    "theguardian.com", "nytimes.com", "ft.com", "npr.org", "cnn.com",
-    "washingtonpost.com", "france24.com", "dw.com",
-  ];
-  const QUERY =
-    `(${KEYWORDS.join(" OR ")}) ` +
-    `(${OUTLETS.map((d) => "domainis:" + d).join(" OR ")}) sourcelang:english`;
-  const GDELT_URL =
-    "https://api.gdeltproject.org/api/v2/doc/doc?" +
-    new URLSearchParams({
-      query: QUERY,
-      mode: "artlist",
-      format: "json",
-      timespan: "24h",
-      maxrecords: "75",
-      sort: "hybridrel",
-    });
+  const CFG = self.MW_CONFIG;
+  const DAY_MS = 24 * 60 * 60 * 1000;
+  const WINDOW_MS = CFG.WINDOW_HOURS * 60 * 60 * 1000;
+  const POLL_MS = CFG.POLL_SECONDS * 1000;
+  const STORE_KEY = "midnight-watch.events.v2";
+  const FILTER_KEY = "midnight-watch.filter";
   // Used only if the browser can't reach GDELT directly (e.g. a CORS failure).
   const FALLBACK_PROXY = "https://api.allorigins.win/raw?url=";
+  const CATEGORY_LABEL = Object.fromEntries(CFG.CATEGORIES.map((c) => [c.id, c.label]));
 
   const $ = (id) => document.getElementById(id);
   const SVG_NS = "http://www.w3.org/2000/svg";
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   let events = loadEvents();
+  let filter = loadFilter();
   let activeKey = null;
   let freshKeys = new Set();
   let lastFetch = null;
@@ -47,7 +27,7 @@
   const msSinceMidnight = (d) =>
     d.getHours() * 3600e3 + d.getMinutes() * 60e3 + d.getSeconds() * 1e3 + d.getMilliseconds();
 
-  const angleFor = (d) => (msSinceMidnight(d) / WINDOW_MS) * Math.PI * 2;
+  const angleFor = (d) => (msSinceMidnight(d) / DAY_MS) * Math.PI * 2;
 
   const polar = (angle, r) => [r * Math.sin(angle), -r * Math.cos(angle)];
 
@@ -125,7 +105,7 @@
     return `${h}h ${mins % 60}m ago`;
   }
 
-  // ---------- events ----------
+  // ---------- storage ----------
 
   function loadEvents() {
     try {
@@ -144,26 +124,35 @@
     }
   }
 
-  function parseSeenDate(s) {
-    const m = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/.exec(s || "");
-    if (!m) return NaN;
-    return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
+  function loadFilter() {
+    try {
+      const f = localStorage.getItem(FILTER_KEY);
+      return f && (f === "all" || CATEGORY_LABEL[f]) ? f : "all";
+    } catch {
+      return "all";
+    }
   }
 
-  // Wire services syndicate the same story under many URLs; key on the headline.
-  const titleKey = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 70);
+  // ---------- events ----------
 
-  function merge(articles) {
+  function merge(articles, category) {
     const known = new Set(events.map((e) => e.key));
     const added = [];
+    const now = Date.now();
     for (const a of articles) {
-      const ts = parseSeenDate(a.seendate);
+      const ts = CFG.parseSeenDate(a.seendate);
       const title = (a.title || "").trim();
       if (!title || !a.url || !Number.isFinite(ts)) continue;
-      const key = titleKey(title);
+      // Skip what prune() would drop, or it would come back as "new" every poll.
+      if (now - ts >= WINDOW_MS || ts > now + 5 * 60e3) continue;
+      const key = CFG.titleKey(title);
       if (known.has(key)) continue;
       known.add(key);
-      const ev = { key, title, url: a.url, source: a.domain || new URL(a.url).hostname, ts };
+      let source = a.domain;
+      if (!source) {
+        try { source = new URL(a.url).hostname; } catch { continue; }
+      }
+      const ev = { key, title, url: a.url, source, ts, category };
       events.push(ev);
       added.push(ev);
     }
@@ -198,37 +187,151 @@
     }
   }
 
+  // Fetches every category's last WINDOW_HOURS of headlines, one request at a time
+  // to respect GDELT's rate limit, rendering as each category lands.
   async function poll() {
     if (fetching) return;
     fetching = true;
     $("refresh").disabled = true;
-    setStatus("Checking the wires…");
-    try {
-      const data = await fetchJson(GDELT_URL);
-      const isFirstLoad = events.length === 0;
-      const added = merge(data.articles || []);
-      const now = Date.now();
-      prune(now);
-      saveEvents();
-      freshKeys = isFirstLoad ? new Set() : new Set(added.map((e) => e.key));
-      lastFetch = new Date();
-      setStatus(
-        `Updated ${timeFmt.format(lastFetch)}` + (added.length && !isFirstLoad ? ` · ${added.length} new` : "")
-      );
-      if (freshKeys.size && navigator.vibrate) navigator.vibrate(80);
-    } catch (err) {
-      setStatus(`Couldn't reach the news feed (${err.message}). Showing saved events.`, true);
-    } finally {
-      fetching = false;
-      $("refresh").disabled = false;
-      render();
+    const isFirstLoad = events.length === 0;
+    const newThisPoll = [];
+    const failures = [];
+    let lastError = null;
+
+    for (const [i, cat] of CFG.CATEGORIES.entries()) {
+      if (i > 0) await sleep(CFG.REQUEST_GAP_MS);
+      setStatus(`Checking ${cat.label.toLowerCase()}…`);
+      try {
+        const data = await fetchJson(CFG.gdeltUrl(cat, CFG.WINDOW_HOURS));
+        const added = merge(data.articles || [], cat.id);
+        newThisPoll.push(...added);
+        if (!isFirstLoad) for (const ev of added) freshKeys.add(ev.key);
+        prune(Date.now());
+        saveEvents();
+        render();
+      } catch (err) {
+        failures.push(cat.label);
+        lastError = err;
+      }
     }
+
+    lastFetch = new Date();
+    if (failures.length === CFG.CATEGORIES.length) {
+      setStatus(`Couldn't reach the news feed (${lastError.message}). Showing saved events.`, true);
+    } else {
+      let msg = `Updated ${timeFmt.format(lastFetch)}`;
+      if (!isFirstLoad && newThisPoll.length) msg += ` · ${newThisPoll.length} new`;
+      if (failures.length) msg += ` · couldn't load ${failures.join(", ")}`;
+      setStatus(msg, failures.length > 0);
+    }
+    if (!isFirstLoad && newThisPoll.length) notifyLocal(newThisPoll);
+
+    fetching = false;
+    $("refresh").disabled = false;
+    render();
   }
 
   function setStatus(text, isError = false) {
     const s = $("status");
     s.textContent = text;
     s.classList.toggle("error", isError);
+  }
+
+  // ---------- notifications ----------
+
+  const isStandalone = () =>
+    window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const notificationsSupported = () => "Notification" in window && "serviceWorker" in navigator;
+
+  // While the app is running, announce new events directly. The tag matches the
+  // one the push notifier uses, so the same event isn't announced twice.
+  async function notifyLocal(added) {
+    if (!notificationsSupported() || Notification.permission !== "granted") return;
+    const reg = await navigator.serviceWorker.ready.catch(() => null);
+    if (!reg) return;
+    const shown = added.filter((e) => filter === "all" || e.category === filter).slice(0, 3);
+    for (const ev of shown) {
+      reg.showNotification(`${CATEGORY_LABEL[ev.category]} · ${ev.source}`, {
+        body: ev.title,
+        tag: ev.key,
+        icon: "apple-touch-icon.png",
+        data: { url: ev.url },
+      });
+    }
+  }
+
+  function b64urlToBytes(s) {
+    const pad = "=".repeat((4 - (s.length % 4)) % 4);
+    const bin = atob((s + pad).replace(/-/g, "+").replace(/_/g, "/"));
+    return Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  }
+
+  function renderNotifyPanel() {
+    const btn = $("notify-btn");
+    const note = $("notify-note");
+    const subBox = $("notify-sub");
+    subBox.hidden = true;
+
+    if (isIOS() && !isStandalone()) {
+      btn.hidden = true;
+      note.textContent = "To get notifications, add this app to your Home Screen (Share → Add to Home Screen), then open it from there.";
+      return;
+    }
+    if (!notificationsSupported() || !("PushManager" in window)) {
+      btn.hidden = true;
+      note.textContent = "This browser doesn't support notifications.";
+      return;
+    }
+    if (Notification.permission === "denied") {
+      btn.hidden = true;
+      note.textContent = "Notifications are blocked. Turn them on in Settings → Notifications → Midnight.";
+      return;
+    }
+    btn.hidden = false;
+    if (Notification.permission === "granted") {
+      btn.textContent = "Show push key";
+      note.textContent = "Notifications are on while the app is open. To get them while it's closed, copy your push key into the repo (see below).";
+    } else {
+      btn.textContent = "Enable notifications";
+      note.textContent = "Get an alert when a new event is logged.";
+    }
+  }
+
+  async function enableNotifications() {
+    const btn = $("notify-btn");
+    btn.disabled = true;
+    try {
+      const perm = await Notification.requestPermission();
+      if (perm !== "granted") return;
+      const reg = await navigator.serviceWorker.ready;
+      let sub = await reg.pushManager.getSubscription();
+      if (!sub) {
+        sub = await reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: b64urlToBytes(CFG.VAPID_PUBLIC_KEY),
+        });
+      }
+      renderNotifyPanel();
+      $("notify-sub-text").value = JSON.stringify(sub);
+      $("notify-sub").hidden = false;
+    } catch (err) {
+      $("notify-note").textContent = `Couldn't enable notifications: ${err.message}`;
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  async function copySubscription() {
+    const text = $("notify-sub-text").value;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      $("notify-sub-text").select();
+      document.execCommand("copy");
+    }
+    $("notify-copy").textContent = "Copied";
+    setTimeout(() => ($("notify-copy").textContent = "Copy push key"), 2000);
   }
 
   // ---------- render ----------
@@ -239,12 +342,14 @@
     return d.getTime();
   }
 
+  const visible = () => (filter === "all" ? events : events.filter((e) => e.category === filter));
+
   function drawMarkers(now) {
     const g = $("markers");
     g.replaceChildren();
     const today0 = startOfToday(now);
     // Oldest first so newer markers render on top; nudge clustered markers outward.
-    const sorted = [...events].sort((a, b) => a.ts - b.ts);
+    const sorted = [...visible()].sort((a, b) => a.ts - b.ts);
     const placed = [];
     for (const ev of sorted) {
       const a = angleFor(new Date(ev.ts));
@@ -255,9 +360,8 @@
       const r = 193 + level * 13;
       const [sx, sy] = polar(a, 182);
       const [px, py] = polar(a, r);
-      const isToday = ev.ts >= today0;
       const cls = ["marker"];
-      if (!isToday) cls.push("past");
+      if (ev.ts < today0) cls.push("past");
       if (ev.key === activeKey) cls.push("active");
       if (freshKeys.has(ev.key)) cls.push("fresh");
 
@@ -269,21 +373,39 @@
     }
   }
 
+  function drawFilters() {
+    const bar = $("filters");
+    bar.replaceChildren();
+    const counts = { all: events.length };
+    for (const e of events) counts[e.category] = (counts[e.category] || 0) + 1;
+    const chips = [{ id: "all", label: "All" }, ...CFG.CATEGORIES];
+    for (const c of chips) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.dataset.filter = c.id;
+      b.setAttribute("aria-pressed", String(filter === c.id));
+      b.textContent = `${c.label} ${counts[c.id] || 0}`;
+      bar.appendChild(b);
+    }
+  }
+
   function drawList(now) {
     const list = $("events");
     list.replaceChildren();
     const today0 = startOfToday(now);
-    const today = events.filter((e) => e.ts >= today0);
-    const earlier = events.filter((e) => e.ts < today0);
+    const shown = visible();
+    const today = shown.filter((e) => e.ts >= today0);
+    const earlier = shown.filter((e) => e.ts < today0);
 
     $("legend-text").textContent =
-      `${plural(today.length, "event")} since midnight` +
-      (earlier.length ? ` · ${earlier.length} earlier (hollow)` : "");
+      `${plural(shown.length, "event")} in the last ${CFG.WINDOW_HOURS} hours` +
+      (earlier.length ? ` · ${earlier.length} before midnight (hollow)` : "");
 
-    if (!events.length) {
+    if (!shown.length) {
       const li = document.createElement("li");
       li.className = "empty";
-      li.textContent = "No events logged in the last 24 hours.";
+      li.textContent = `No events logged in the last ${CFG.WINDOW_HOURS} hours.`;
       list.appendChild(li);
       return;
     }
@@ -297,7 +419,6 @@
       for (const ev of items) {
         const li = document.createElement("li");
         li.className = "event" + (past ? " past" : "") + (ev.key === activeKey ? " active" : "");
-        li.id = "ev-" + ev.key.replace(/ /g, "-");
         li.dataset.key = ev.key;
 
         const bullet = document.createElement("span");
@@ -313,13 +434,16 @@
 
         const meta = document.createElement("div");
         meta.className = "event-meta";
+        const cat = document.createElement("span");
+        cat.className = "cat";
+        cat.textContent = CATEGORY_LABEL[ev.category] || ev.category;
         const src = document.createElement("span");
         src.className = "src";
         src.textContent = ev.source;
         const when = document.createElement("time");
         when.dateTime = new Date(ev.ts).toISOString();
         when.textContent = `${timeFmt.format(ev.ts)} · ${ago(ev.ts, now)}`;
-        meta.append(src, when);
+        meta.append(cat, src, when);
 
         body.append(a, meta);
         li.append(bullet, body);
@@ -328,12 +452,13 @@
     };
 
     group(`Today · ${dateFmt.format(now)}`, today, false);
-    group(`Earlier · ${dateFmt.format(today0 - 1)}`, earlier, true);
+    group(`Before midnight · ${dateFmt.format(today0 - 1)}`, earlier, true);
   }
 
   function render() {
     const now = new Date();
     prune(now.getTime());
+    drawFilters();
     drawMarkers(now);
     drawList(now);
   }
@@ -365,9 +490,19 @@
     const li = e.target.closest(".event");
     if (li) activate(li.dataset.key, false);
   });
+  $("filters").addEventListener("click", (e) => {
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    filter = chip.dataset.filter;
+    try { localStorage.setItem(FILTER_KEY, filter); } catch { /* ignore */ }
+    render();
+  });
   $("refresh").addEventListener("click", poll);
+  $("notify-btn").addEventListener("click", enableNotifications);
+  $("notify-copy").addEventListener("click", copySubscription);
 
   drawFace();
+  renderNotifyPanel();
   let lastMinute = -1;
   function tick() {
     const now = new Date();
@@ -385,7 +520,7 @@
   poll();
   setInterval(poll, POLL_MS);
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible" && (!lastFetch || Date.now() - lastFetch > 60e3)) poll();
+    if (document.visibilityState === "visible" && (!lastFetch || Date.now() - lastFetch > 30e3)) poll();
   });
 
   if ("serviceWorker" in navigator) {

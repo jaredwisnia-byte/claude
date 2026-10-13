@@ -1,0 +1,11 @@
+{
+  "name": "midnight-watch",
+  "private": true,
+  "description": "Push notifier for Midnight Watch",
+  "scripts": {
+    "notify": "node scripts/notify.mjs"
+  },
+  "dependencies": {
+    "web-push": "3.6.7"
+  }
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Midnight Watch</title>
+<meta name="description" content="A 24-hour countdown clock that marks geopolitical events as they happen.">
+<meta name="theme-color" content="#0b0b0a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Midnight">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="masthead">
+    <p class="kicker">Midnight Watch</p>
+    <h1 id="headline" class="headline">It is — to midnight</h1>
+    <p id="countdown" class="countdown" aria-live="off">--:--:--</p>
+  </header>
+
+  <section class="dial-wrap" aria-label="24-hour clock">
+    <svg id="dial" class="dial" viewBox="-222 -222 444 444" role="img" aria-labelledby="dial-title">
+      <title id="dial-title">24-hour clock face with event markers</title>
+      <circle class="face" r="182"/>
+      <path id="remaining" class="remaining"/>
+      <g id="ticks"></g>
+      <g id="labels"></g>
+      <g id="markers"></g>
+      <line id="hand" class="hand" x1="0" y1="18" x2="0" y2="-150"/>
+      <circle class="hub" r="6"/>
+    </svg>
+    <p class="legend"><span class="dot"></span> <span id="legend-text">0 events today</span></p>
+  </section>
+
+  <section class="ledger" aria-labelledby="ledger-title">
+    <div class="ledger-head">
+      <h2 id="ledger-title">Event ledger</h2>
+      <button id="refresh" class="refresh" type="button">Refresh</button>
+    </div>
+    <p id="status" class="status" role="status">Loading…</p>
+    <ol id="events" class="events"></ol>
+  </section>
+
+  <footer class="foot">
+    Headlines from the <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> global news index, checked every 5 minutes.
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

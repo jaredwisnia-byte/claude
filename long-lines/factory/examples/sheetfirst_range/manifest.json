@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "asset_id": "sheetfirst_range_demo",
+  "description": "UV-first 1970s freestanding electric range demonstration, geometric surfaces only",
+  "atlas": {
+    "albedo": "range_painted.png",
+    "depth": "range_depth.png",
+    "size_px": [
+      2048,
+      1024
+    ],
+    "roughness": 0.7,
+    "metallic": 0.1
+  },
+  "depth_range_m": {
+    "inward": 0.012,
+    "outward": 0.012
+  },
+  "panels": [
+    {
+      "name": "front",
+      "size_m": [
+        0.76,
+        0.97
+      ],
+      "rect_px": [
+        32,
+        32,
+        412,
+        517
+      ],
+      "origin_m": [
+        -0.38,
+        -0.33,
+        0
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        20,
+        24
+      ]
+    },
+    {
+      "name": "left",
+      "size_m": [
+        0.66,
+        0.97
+      ],
+      "rect_px": [
+        432,
+        32,
+        762,
+        517
+      ],
+      "origin_m": [
+        -0.38,
+        0.33,
+        0
+      ],
+      "u_axis": [
+        0,
+        -1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        14,
+        24
+      ]
+    },
+    {
+      "name": "right",
+      "size_m": [
+        0.66,
+        0.97
+      ],
+      "rect_px": [
+        782,
+        32,
+        1112,
+        517
+      ],
+      "origin_m": [
+        0.38,
+        -0.33,
+        0
+      ],
+      "u_axis": [
+        0,
+        1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        14,
+        24
+      ]
+    },
+    {
+      "name": "back",
+      "size_m": [
+        0.76,
+        0.97
+      ],
+      "rect_px": [
+        1132,
+        32,
+        1512,
+        517
+      ],
+      "origin_m": [
+        0.38,
+        0.33,
+        0
+      ],
+      "u_axis": [
+        -1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        18,
+        24
+      ]
+    },
+    {
+      "name": "top",
+      "size_m": [
+        0.76,
+        0.66
+      ],
+      "rect_px": [
+        32,
+        550,
+        412,
+        880
+      ],
+      "origin_m": [
+        -0.38,
+        -0.33,
+        0.97
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        1,
+        0
+      ],
+      "grid": [
+        16,
+        14
+      ]
+    },
+    {
+      "name": "oven_door",
+      "size_m": [
+        0.62,
+        0.46
+      ],
+      "rect_px": [
+        830,
+        550,
+        1140,
+        780
+      ],
+      "origin_m": [
+        -0.31,
+        -0.342,
+        0.12
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        24,
+        18
+      ]
+    },
+    {
+      "name": "handle",
+      "size_m": [
+        0.5,
+        0.1
+      ],
+      "rect_px": [
+        1160,
+        550,
+        1360,
+        590
+      ],
+      "origin_m": [
+        -0.25,
+        -0.365,
+        0.64
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        14,
+        4
+      ]
+    }
+  ],
+  "seams": [
+    {
+      "a": "front",
+      "a_edge": "u1",
+      "b": "right",
+      "b_edge": "u0"
+    },
+    {
+      "a": "front",
+      "a_edge": "u0",
+      "b": "left",
+      "b_edge": "u1"
+    },
+    {
+      "a": "back",
+      "a_edge": "u0",
+      "b": "right",
+      "b_edge": "u1"
+    },
+    {
+      "a": "back",
+      "a_edge": "u1",
+      "b": "left",
+      "b_edge": "u0"
+    },
+    {
+      "a": "front",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v0"
+    }
+  ]
+}

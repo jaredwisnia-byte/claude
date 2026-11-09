@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "asset_id": "sheetfirst_curved_demo",
+  "description": "UV-first curved refrigerator panel demonstration (an open surface patch, not a complete fridge)",
+  "atlas": {
+    "albedo": "fridge_painted.png",
+    "depth": "fridge_depth.png",
+    "size_px": [
+      1024,
+      1024
+    ],
+    "roughness": 0.72,
+    "metallic": 0.05,
+    "vector": "fridge_vector.png"
+  },
+  "depth_range_m": {
+    "inward": 0.01,
+    "outward": 0.012
+  },
+  "panels": [
+    {
+      "name": "curved_front",
+      "size_m": [
+        0.6,
+        1.5
+      ],
+      "rect_px": [
+        32,
+        32,
+        392,
+        932
+      ],
+      "origin_m": [
+        -0.3,
+        -0.4,
+        0
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "cylinder",
+        "axis": "u",
+        "radius_m": 0.95
+      },
+      "grid": [
+        40,
+        48
+      ]
+    }
+  ],
+  "vector_range_m": [
+    0.015,
+    0.01,
+    0.02
+  ]
+}

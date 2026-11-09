@@ -1,0 +1,95 @@
+name: Sheet-first modelling regression and Blender smoke
+
+concurrency:
+  group: sheetfirst-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    paths:
+      - ".github/workflows/sheetfirst-ci.yml"
+      - "long-lines/tools/propkit/sheetfirst_*"
+      - "long-lines/tools/factory.py"
+      - "long-lines/tests/test_sheetfirst_engine.py"
+      - "long-lines/factory/examples/**"
+  pull_request:
+    paths:
+      - ".github/workflows/sheetfirst-ci.yml"
+      - "long-lines/tools/propkit/sheetfirst_*"
+      - "long-lines/tools/factory.py"
+      - "long-lines/tests/test_sheetfirst_engine.py"
+      - "long-lines/factory/examples/**"
+
+jobs:
+  geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install "Pillow>=10"
+      - name: Check Blender modules compile
+        run: python -m py_compile long-lines/tools/factory.py long-lines/tools/propkit/sheetfirst_engine.py long-lines/tools/propkit/sheetfirst_blender.py
+      - name: Test panel geometry, depth decoding, UV ratios and assembly seams
+        run: python -m unittest discover -s long-lines/tests -p 'test_sheetfirst_engine.py' -v
+      - name: Generate matching example atlases
+        run: python long-lines/factory/examples/generate_atlases.py
+      - name: Verify both example manifests and generated surfaces
+        run: |
+          python - <<'PY'
+          import os, sys
+          from PIL import Image
+          sys.path.insert(0, 'long-lines/tools')
+          from propkit.sheetfirst_engine import read_manifest, build_geometry, validate_seams
+          for n in ('sheetfirst_range', 'sheetfirst_curved'):
+              root = 'long-lines/factory/examples/' + n
+              spec, _, depth = read_manifest(root + '/manifest.json')
+              with Image.open(depth) as image:
+                  meshes = build_geometry(spec, image.convert('RGB'))
+              assert not validate_seams(spec, meshes)
+              print(n, len(meshes), 'surface patches', sum(len(m['faces']) for m in meshes.values()), 'quads')
+          PY
+
+  blender-smoke:
+    needs: geometry
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: /usr/lib/python3/dist-packages
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender and runtime image dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender python3-pil python3-numpy python3-scipy python3-skimage
+      - name: Generate matching source art
+        run: /usr/bin/python3 long-lines/factory/examples/generate_atlases.py
+      - name: Create sheet-first build orders
+        run: |
+          blender -b --factory-startup --python-exit-code 1 -P long-lines/tools/factory.py -- intake_sheetfirst long-lines/factory/examples/sheetfirst_range/manifest.json
+          blender -b --factory-startup --python-exit-code 1 -P long-lines/tools/factory.py -- intake_sheetfirst long-lines/factory/examples/sheetfirst_curved/manifest.json
+      - name: Build, export, and render both GLBs
+        run: |
+          blender -b --factory-startup --python-exit-code 1 -P long-lines/tools/factory.py -- build sheetfirst_range_demo sheetfirst_curved_demo
+      - name: Confirm fixed UVs and PNG output
+        run: |
+          /usr/bin/python3 - <<'PY'
+          from pathlib import Path
+          root = Path("long-lines/assets/props")
+          for name in ("sheetfirst_range_demo", "sheetfirst_curved_demo"):
+              folder = root / name
+              for ext in (".glb", "_albedo.png", "_normal.png", "_orm.png", "_preview.png"):
+                  p = folder / (name + ext if ext != "_preview.png" else "_preview.png")
+                  assert p.exists() and p.stat().st_size > (100 if ext == ".glb" else 32), str(p)
+              print("VERIFIED", name)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sheetfirst-blender-smoke
+          path: |
+            long-lines/assets/props/sheetfirst_range_demo/_preview.png
+            long-lines/assets/props/sheetfirst_curved_demo/_preview.png
+            long-lines/factory/REPORT.md
+          if-no-files-found: ignore

@@ -4,6 +4,7 @@ Run under Blender (all stations share one process):
     blender -b --factory-startup -P tools/factory.py -- intake IMAGE NAME --category tv [--height 0.5]
     blender -b --factory-startup -P tools/factory.py -- intake_sheet SHEET_SPEC.json --source-dir DIR
     blender -b --factory-startup -P tools/factory.py -- intake_set MANIFEST.json [--category fridge] [--name N]
+    blender -b --factory-startup -P tools/factory.py -- intake_sheetfirst MANIFEST.json [--name N]
     blender -b --factory-startup -P tools/factory.py -- build NAME... | --pending | --all-orders
     blender -b --factory-startup -P tools/factory.py -- qa NAME... | --library
     blender -b --factory-startup -P tools/factory.py -- report
@@ -175,6 +176,44 @@ def intake_sheet(spec_path, source_dir):
     return out
 
 
+def intake_sheetfirst(manifest, name=None):
+    """Create a work order from a paint-first assembly manifest and aligned PNGs.
+
+    The source specification and both atlas images are copied intact into the
+    asset's input folder. No UV region is inferred from the painting.
+    """
+    import shutil
+    from propkit.sheetfirst_engine import read_manifest
+    spec, paint, depth = read_manifest(manifest)
+    name = name or spec.get("asset_id")
+    if not name or not isinstance(name, str) or not all(
+            c.isalnum() or c == "_" for c in name):
+        raise ValueError("sheetfirst asset name must contain only letters, numbers, underscores")
+    dest = os.path.join(SRC, name)
+    os.makedirs(dest, exist_ok=True)
+    files = [(os.path.realpath(manifest), os.path.join(dest, "manifest.json")),
+             (paint, os.path.join(dest, spec["atlas"]["albedo"]))]
+    if depth:
+        files.append((depth, os.path.join(dest, spec["atlas"]["depth"])))
+    if spec["atlas"].get("vector"):
+        vector_source = os.path.join(os.path.dirname(os.path.realpath(manifest)),
+                                     spec["atlas"]["vector"])
+        files.append((vector_source, os.path.join(dest, spec["atlas"]["vector"])))
+    for origin, target in files:
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        if os.path.realpath(origin) != os.path.realpath(target):
+            shutil.copyfile(origin, target)
+    order = {
+        "name": name, "category": "sheetfirst", "line": "sheetfirst",
+        "views_folder": name, "source": "manifest.json", "class": None,
+        "status": "pending", "notes": spec.get("description", ""),
+        "assumptions": ["dimensions, UV rectangles and assembly from source manifest"],
+    }
+    save_order(order)
+    print("SHEETFIRST_ORDER", name, len(spec["panels"]), "panels")
+    return order
+
+
 def intake_set(manifest, category=None, name=None):
     """A v2 sheet set (painted + depth + part map + section + manifest, REFERENCE_SPEC.md):
     files copied to source_textures/<name>/, size from the manifest's dimensions."""
@@ -315,8 +354,13 @@ def build(order, samples=16):
         try:
             core.reset()
             mats.reset()
-            run_line(order)
-            info = bake.finish(order["name"], LIB, tex_for(order), samples, tags=[order["category"]])
+            if order["line"] == "sheetfirst":
+                from propkit import sheetfirst_blender
+                manifest = os.path.join(SRC, order["views_folder"], "manifest.json")
+                info = sheetfirst_blender.build_and_export(manifest, order["name"], LIB)
+            else:
+                run_line(order)
+                info = bake.finish(order["name"], LIB, tex_for(order), samples, tags=[order["category"]])
             info.update({"tags": [order["category"], "factory"], "desc": order.get("notes") or order["name"],
                          "kind": order.get("kind", "static")})
             bake.update_manifest(os.path.join(LIB, "library.json"), order["name"], info)
@@ -324,12 +368,19 @@ def build(order, samples=16):
             result = qa.check(order["name"], vd, order.get("class"), tuple(order.get("hull", {}).get("paint_only", ())),
                               solid=order["line"] in STANDARDS["solid_lines"], mount=order.get("mount", "floor"),
                                trim_order=order)
+            if order["line"] == "sheetfirst":
+                from propkit import sheetfirst_engine
+                spec, _, _ = sheetfirst_engine.read_manifest(manifest)
+                uv_fails, uv_accuracy = sheetfirst_blender.verify_imported_uvs(order["name"], spec)
+                result["metrics"]["sheetfirst_uv_max_error_px"] = uv_accuracy
+                result["fails"].extend(uv_fails)
+                result["pass"] = not result["fails"]
         except Exception as e:
             traceback.print_exc()
             result = {"pass": False, "fails": ["build error: %s" % e], "metrics": {}}
         if result["pass"] or attempt > STANDARDS["minimum_acceptable"]["max_retries"] or not correct(order, result):
             break
-    if result["pass"] and order["line"] == "extrude":
+    if result["pass"] and order["line"] in ("extrude", "sheetfirst"):
         try:
             preview = render_trim_preview(order["name"])
             result["metrics"]["preview_png"] = os.path.relpath(preview, ROOT)
@@ -340,6 +391,8 @@ def build(order, samples=16):
     order["attempts"] = attempt
     save_order(order)
     srcs = glob.glob(os.path.join(SRC, order.get("views_folder", "-"), "*.png"))
+    if order["line"] == "sheetfirst":
+        srcs.append(os.path.join(SRC, order["views_folder"], "manifest.json"))
     ledger({"op": "build", "name": order["name"], "line": order["line"], "pass": result["pass"],
             "attempts": attempt, "auto": result["pass"] and attempt == 1, "seconds": round(time.time() - t0, 1),
             "fails": result["fails"], "metrics": result["metrics"],
@@ -443,6 +496,8 @@ if __name__ == "__main__":
         if "--height" in rest:
             kw["height"] = float(rest[rest.index("--height") + 1])
         intake(rest[0], rest[1], rest[rest.index("--category") + 1], **kw)
+    elif cmd == "intake_sheetfirst":
+        intake_sheetfirst(rest[0], rest[rest.index("--name") + 1] if "--name" in rest else None)
     elif cmd == "intake_set":
         intake_set(rest[0], rest[rest.index("--category") + 1] if "--category" in rest else None,
                    rest[rest.index("--name") + 1] if "--name" in rest else None)

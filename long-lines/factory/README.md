@@ -50,6 +50,7 @@ blender -b --factory-startup -P long-lines/tools/match_check.py -- MODEL.glb MAN
 | atlas | parts atlas sheet (panels laid flat) | `propkit/atlas.py`: panels found automatically; the order names front rows / side / top / back / kick / backguard / burners; each front panel is its own bevelled slab; knobs on control panels get depth from `part_rules.py` | appliances, cabinets, any boxy object drawn as parts |
 | sheetset | v2 sheet set: painted + depth + part map (+ section) + manifest | `propkit/sheetset.py`: outlines from the part map (protruding parts left out of the carve), body by the hull, every part-map region classified (handle, hinge, foot, seam, vent, pit, dispenser...) and built from its own outline; depth measured side-on, else depth map scaled by the measured parts, clamped and placement-checked by `factory/sizing_manual.json` | any object, best quality; the preferred input from Nov 2026 |
 | extrude | trim sheet | `propkit/extrude.py`: mouldings = drawn cross-section (or a default per kind) swept 1.2 m and wrapped with the painted strip; frames = painted front extruded with its opening cut | baseboards, crown, rails, casings, mirror surrounds, access panels |
+| sheetfirst | dimensioned UV atlas + optional RGB depth/vector maps + assembly manifest | `propkit/sheetfirst_engine.py` builds flat/curved surface panels directly from authored UV rectangles; `sheetfirst_blender.py` exports with original UVs | opt-in paint-first assembly of appliances, panelled furniture and curved surfaces |
 
 A new line is justified only when a category repeatedly fails another line's gate.
 
@@ -68,7 +69,12 @@ person, mean build time, triangle statistics, failure kinds by frequency, per-li
 The ledger records input and output hashes, so the same inputs can be checked to give the
 same output.
 
-## Texture manufacturing (all lines, Nov 2026)
+## Texture manufacturing (legacy lines, Nov 2026)
+The following describes legacy production paths only. **The opt-in `sheetfirst`
+line instead builds geometry to match a pre-authored UV construction sheet,
+preserves the atlas coordinates and skips the legacy bake/unwrap; see
+[Sheet-first construction](SHEETFIRST.md).**
+
 The reference sheet is never the texture. Every asset's mesh is unwrapped into its own UV atlas
 and the colours are baked into it (`propkit/bake.finish`, padding round islands). What gets baked
 is decided by `propkit/texturing.project` for shapes coloured from views (hull, sheet sets):

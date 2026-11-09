@@ -1,0 +1,205 @@
+{
+  "format": "FACTORY_V1_ASSEMBLY",
+  "asset_id": "crt_tv_1974_demo",
+  "expected_manifold": true,
+  "parts": [
+    {
+      "id": "body",
+      "construction": "closed_box",
+      "panels": [
+        "front",
+        "back",
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      "closed_solid": true,
+      "semantic_class": "main_body",
+      "notes": "Six panels form a welded solid cabinet. Rear panel and underside are real."
+    },
+    {
+      "id": "screen_glass",
+      "construction": "applique",
+      "panels": [
+        "screen_face"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        -0.253,
+        -0.203,
+        0.0644
+      ],
+      "dimensions_m": [
+        0.39,
+        0.01,
+        0.3
+      ],
+      "semantic_class": "glass",
+      "notes": "Curved CRT glass should be a 3D shallow bulged insert in the Blender builder, not mere paint. Closed 10 mm insert seated on the recess floor; the bulge comes from the signed depth map."
+    },
+    {
+      "id": "dial_1",
+      "construction": "cylinder",
+      "panels": [
+        "dial_face_1"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.2167,
+        -0.232,
+        0.2744
+      ],
+      "dimensions_m": [
+        0.05,
+        0.027,
+        0.05
+      ],
+      "semantic_class": "raised_hard"
+    },
+    {
+      "id": "dial_2",
+      "construction": "cylinder",
+      "panels": [
+        "dial_face_2"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.2167,
+        -0.232,
+        0.1561
+      ],
+      "dimensions_m": [
+        0.05,
+        0.027,
+        0.05
+      ],
+      "semantic_class": "raised_hard"
+    }
+  ],
+  "connections": [
+    {
+      "a": "front",
+      "a_edge": "u0",
+      "b": "left",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "u1",
+      "b": "right",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "v1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "u1",
+      "b": "left",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "u0",
+      "b": "right",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "v0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "left",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "left",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "right",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "right",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    }
+  ],
+  "cavities": [
+    {
+      "id": "screen_recess",
+      "owner_part": "body",
+      "opening_panel": "front",
+      "shape": "rect",
+      "centre_uv": [
+        0.4,
+        0.4765
+      ],
+      "size_m": [
+        0.4,
+        0.31
+      ],
+      "depth_m": 0.012,
+      "closed_bottom": true,
+      "notes": "Needs physical bezel and a cavity lining; paint-only dark rectangle does not count."
+    }
+  ],
+  "assembly_notes": [
+    "Concealed faces and joins are explicitly declared, avoiding the previous benchmark's floating/open panels.",
+    "anchor_m is the minimum corner of each part's base box (face panel + declared thickness, before painted relief).",
+    "Placement corrected in the manifest stage after the V1 assembly QA: screen recess moved to the painted cavity mask (was 17 mm high), screen glass seated on the recess floor (was 21 mm in front of the cabinet), dials seated on the front face (were 2 mm off it) and centred on their painted circles (were 9 mm left); screen glass declared closed_solid (an open sheet cannot touch the recess floor)."
+  ]
+}

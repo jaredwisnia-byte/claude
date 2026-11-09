@@ -213,3 +213,21 @@ add to it whenever something goes wrong.
 - Repository weight: every rebuild commits new binaries (GLB + 3 PNG maps + previews). The repo grew
   to ~570 MB this session. Generated assets are reproducible from sources + orders: commit them only
   when an asset ships, use Git LFS for binaries, and keep previews out of git.
+
+## FACTORY_V1 interpreter (Nov 9)
+- **A preflight pass is not a placement check.** The CRT example passed the validator with its glass
+  21 mm in front of the cabinet, its knobs 2 mm off the face and its recess 17 mm away from the
+  painted one. The V1 QA now checks contact with the parent (on the reimported GLB) and registration
+  of every declared cavity / part footprint against the part-ID map. Fix the manifest stage, not the builder.
+- **Build what the map says, then read the map.** The CRT glass came out as a raised ring: the demo
+  generator had painted a ring with a flat centre. The builder was right; the maps stage was fixed.
+- **One spec gap = one convention in writing.** `anchor_m` had two meanings in the same file (face
+  centre, minimum corner). The builder now treats the face panel as authoritative and the anchor as a
+  check; the convention is in FACTORY_V1.md.
+- **Welds must not spread density.** Sharing grid lines across welded panels pushed a thin front groove's
+  grid onto the smooth top dome (6,620 triangles for a toaster). Sharing only the edge vertices and
+  picking cell counts from a relief error limit gave 1,020 with the same shape.
+- **Stale Blender references.** After `bm.to_mesh(me)` a previously fetched `me.uv_layers[...]` points at
+  freed data: UVs read through it are garbage. Fetch the layer again.
+- **Unsigned distance is not contact.** Parts that sink into their parent are "2 mm away" by nearest-surface
+  distance; use overlap to decide contact.

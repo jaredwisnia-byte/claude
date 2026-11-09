@@ -1,0 +1,282 @@
+{
+  "format": "FACTORY_V1_ASSEMBLY",
+  "asset_id": "toaster_1974_v1",
+  "expected_manifold": true,
+  "parts": [
+    {
+      "id": "body",
+      "construction": "closed_box",
+      "panels": [
+        "front",
+        "back",
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      "closed_solid": true,
+      "semantic_class": "main_body",
+      "notes": "Six welded faces; two slot cavities open in the top."
+    },
+    {
+      "id": "heat_dial",
+      "construction": "cylinder",
+      "panels": [
+        "knob_face",
+        "knob_wrap"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.16,
+        0.029,
+        0.065
+      ],
+      "dimensions_m": [
+        0.021,
+        0.048,
+        0.048
+      ],
+      "semantic_class": "raised_hard",
+      "notes": "Seated on the right face (PR #3 left it 1.5 mm off the body)."
+    },
+    {
+      "id": "thumb_lever",
+      "construction": "applique",
+      "panels": [
+        "lever_face"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.159,
+        -0.076,
+        0.113
+      ],
+      "dimensions_m": [
+        0.034,
+        0.052,
+        0.024
+      ],
+      "semantic_class": "moving_part",
+      "notes": "Handle block over the painted lever track; 1 mm into the body."
+    },
+    {
+      "id": "foot_fl",
+      "construction": "applique",
+      "panels": [
+        "foot_fl_face"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        -0.143,
+        -0.094,
+        0.0
+      ],
+      "dimensions_m": [
+        0.034,
+        0.03,
+        0.02
+      ],
+      "semantic_class": "support"
+    },
+    {
+      "id": "foot_fr",
+      "construction": "applique",
+      "panels": [
+        "foot_fr_face"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.109,
+        -0.094,
+        0.0
+      ],
+      "dimensions_m": [
+        0.034,
+        0.03,
+        0.02
+      ],
+      "semantic_class": "support"
+    },
+    {
+      "id": "foot_bl",
+      "construction": "applique",
+      "panels": [
+        "foot_bl_face"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        -0.143,
+        0.064,
+        0.0
+      ],
+      "dimensions_m": [
+        0.034,
+        0.03,
+        0.02
+      ],
+      "semantic_class": "support"
+    },
+    {
+      "id": "foot_br",
+      "construction": "applique",
+      "panels": [
+        "foot_br_face"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.109,
+        0.064,
+        0.0
+      ],
+      "dimensions_m": [
+        0.034,
+        0.03,
+        0.02
+      ],
+      "semantic_class": "support"
+    }
+  ],
+  "connections": [
+    {
+      "a": "front",
+      "a_edge": "u0",
+      "b": "left",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "u1",
+      "b": "right",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "v1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "u1",
+      "b": "left",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "u0",
+      "b": "right",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "v0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "left",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "left",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "right",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "right",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    }
+  ],
+  "cavities": [
+    {
+      "id": "left_slot",
+      "owner_part": "body",
+      "opening_panel": "top",
+      "shape": "rect",
+      "centre_uv": [
+        0.284375,
+        0.5
+      ],
+      "size_m": [
+        0.036,
+        0.13
+      ],
+      "depth_m": 0.038,
+      "closed_bottom": true
+    },
+    {
+      "id": "right_slot",
+      "owner_part": "body",
+      "opening_panel": "top",
+      "shape": "rect",
+      "centre_uv": [
+        0.715625,
+        0.5
+      ],
+      "size_m": [
+        0.036,
+        0.13
+      ],
+      "depth_m": 0.038,
+      "closed_bottom": true
+    }
+  ],
+  "assembly_notes": [
+    "Built by the same interpreter as the CRT; no toaster-specific code.",
+    "Body welds were drafted with factory_v1.py --suggest-welds and pasted here.",
+    "anchor_m is the minimum corner of each part's base box."
+  ]
+}

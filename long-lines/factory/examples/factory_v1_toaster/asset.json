@@ -1,0 +1,518 @@
+{
+  "format": "FACTORY_V1",
+  "asset_id": "toaster_1974_v1",
+  "brief": {
+    "description": "1974 cream and ochre two-slot toaster with a thumb lever, heat dial and four feet",
+    "era": "1970s",
+    "style": "Long Lines painterly low-poly",
+    "condition": "worn",
+    "dimensions_m": {
+      "width": 0.32,
+      "depth": 0.22,
+      "height": 0.198
+    }
+  },
+  "maps": {
+    "canvas_px": [
+      1792,
+      1200
+    ],
+    "pixels_per_metre": 1600,
+    "albedo": "albedo.png",
+    "signed_depth": "signed_depth.png",
+    "part_ids": "part_ids.png",
+    "orthographic": "orthographic.png",
+    "concept": "concept.png",
+    "reference_pixel_scale": 800,
+    "reference_canvas_px": [
+      1100,
+      420
+    ]
+  },
+  "depth_range_m": {
+    "inward": 0.025,
+    "outward": 0.014
+  },
+  "panels": [
+    {
+      "id": "front",
+      "part_id": "body",
+      "face": "front",
+      "rect_px": [
+        64,
+        64,
+        576,
+        352
+      ],
+      "size_m": [
+        0.32,
+        0.18
+      ],
+      "origin_m": [
+        -0.16,
+        -0.11,
+        0.018
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      }
+    },
+    {
+      "id": "back",
+      "part_id": "body",
+      "face": "back",
+      "rect_px": [
+        640,
+        64,
+        1152,
+        352
+      ],
+      "size_m": [
+        0.32,
+        0.18
+      ],
+      "origin_m": [
+        0.16,
+        0.11,
+        0.018
+      ],
+      "u_axis": [
+        -1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      }
+    },
+    {
+      "id": "left",
+      "part_id": "body",
+      "face": "left",
+      "rect_px": [
+        1200,
+        64,
+        1552,
+        352
+      ],
+      "size_m": [
+        0.22,
+        0.18
+      ],
+      "origin_m": [
+        -0.16,
+        0.11,
+        0.018
+      ],
+      "u_axis": [
+        0,
+        -1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      }
+    },
+    {
+      "id": "right",
+      "part_id": "body",
+      "face": "right",
+      "rect_px": [
+        1200,
+        416,
+        1552,
+        704
+      ],
+      "size_m": [
+        0.22,
+        0.18
+      ],
+      "origin_m": [
+        0.16,
+        -0.11,
+        0.018
+      ],
+      "u_axis": [
+        0,
+        1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      }
+    },
+    {
+      "id": "top",
+      "part_id": "body",
+      "face": "top",
+      "rect_px": [
+        64,
+        416,
+        576,
+        768
+      ],
+      "size_m": [
+        0.32,
+        0.22
+      ],
+      "origin_m": [
+        -0.16,
+        -0.11,
+        0.198
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        1,
+        0
+      ],
+      "curve": {
+        "type": "flat"
+      }
+    },
+    {
+      "id": "bottom",
+      "part_id": "body",
+      "face": "bottom",
+      "rect_px": [
+        640,
+        416,
+        1152,
+        768
+      ],
+      "size_m": [
+        0.32,
+        0.22
+      ],
+      "origin_m": [
+        -0.16,
+        0.11,
+        0.018
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        -1,
+        0
+      ],
+      "curve": {
+        "type": "flat"
+      }
+    },
+    {
+      "id": "knob_face",
+      "part_id": "heat_dial",
+      "face": "custom",
+      "rect_px": [
+        64,
+        1012,
+        141,
+        1089
+      ],
+      "size_m": [
+        0.048,
+        0.048
+      ],
+      "origin_m": [
+        0.181,
+        0.029,
+        0.065
+      ],
+      "u_axis": [
+        0,
+        1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "dial cap, faces +X"
+    },
+    {
+      "id": "knob_wrap",
+      "part_id": "heat_dial",
+      "face": "custom",
+      "rect_px": [
+        165,
+        1012,
+        406,
+        1046
+      ],
+      "size_m": [
+        0.1508,
+        0.021
+      ],
+      "origin_m": [
+        0.181,
+        0.029,
+        0.065
+      ],
+      "u_axis": [
+        0,
+        1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "knurled side, wraps the cap circumference (u = arc length)"
+    },
+    {
+      "id": "lever_face",
+      "part_id": "thumb_lever",
+      "face": "custom",
+      "rect_px": [
+        430,
+        1012,
+        513,
+        1050
+      ],
+      "size_m": [
+        0.052,
+        0.024
+      ],
+      "origin_m": [
+        0.193,
+        -0.076,
+        0.113
+      ],
+      "u_axis": [
+        0,
+        1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "lever handle face, faces +X"
+    },
+    {
+      "id": "foot_fl_face",
+      "part_id": "foot_fl",
+      "face": "custom",
+      "rect_px": [
+        537,
+        1012,
+        591,
+        1060
+      ],
+      "size_m": [
+        0.034,
+        0.03
+      ],
+      "origin_m": [
+        -0.143,
+        -0.064,
+        0.0
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        -1,
+        0
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "rubber foot underside, faces -Z"
+    },
+    {
+      "id": "foot_fr_face",
+      "part_id": "foot_fr",
+      "face": "custom",
+      "rect_px": [
+        615,
+        1012,
+        669,
+        1060
+      ],
+      "size_m": [
+        0.034,
+        0.03
+      ],
+      "origin_m": [
+        0.109,
+        -0.064,
+        0.0
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        -1,
+        0
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "rubber foot underside, faces -Z"
+    },
+    {
+      "id": "foot_bl_face",
+      "part_id": "foot_bl",
+      "face": "custom",
+      "rect_px": [
+        693,
+        1012,
+        747,
+        1060
+      ],
+      "size_m": [
+        0.034,
+        0.03
+      ],
+      "origin_m": [
+        -0.143,
+        0.094,
+        0.0
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        -1,
+        0
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "rubber foot underside, faces -Z"
+    },
+    {
+      "id": "foot_br_face",
+      "part_id": "foot_br",
+      "face": "custom",
+      "rect_px": [
+        771,
+        1012,
+        825,
+        1060
+      ],
+      "size_m": [
+        0.034,
+        0.03
+      ],
+      "origin_m": [
+        0.109,
+        0.094,
+        0.0
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        -1,
+        0
+      ],
+      "curve": {
+        "type": "flat"
+      },
+      "notes": "rubber foot underside, faces -Z"
+    }
+  ],
+  "orthographic_views": {
+    "front": [
+      10,
+      10,
+      266,
+      168
+    ],
+    "right": [
+      278,
+      10,
+      454,
+      168
+    ],
+    "back": [
+      466,
+      10,
+      722,
+      168
+    ],
+    "left": [
+      734,
+      10,
+      910,
+      168
+    ],
+    "top": [
+      10,
+      190,
+      266,
+      366
+    ],
+    "bottom": [
+      278,
+      190,
+      534,
+      366
+    ]
+  },
+  "assembly_file": "assembly.json",
+  "source_notes": [
+    "Adapted from PR #3's sheet-first toaster (pr3_source/): same painted six-face net, rects and sizes.",
+    "Component tiles were resampled into V1 panels at the single 1600 px/m scale (PR #3's 152 px tiles were not to scale).",
+    "part_ids re-coded to the V1 palette: slots from PR #3's own slot masks; knob, lever and feet masks follow this manifest's footprints (not independent evidence)."
+  ]
+}

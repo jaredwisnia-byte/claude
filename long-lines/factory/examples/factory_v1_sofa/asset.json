@@ -1,0 +1,2332 @@
+{
+ "format": "FACTORY_V1",
+ "asset_id": "sofa_1970s_3seat",
+ "brief": {
+  "description": "1970s three-seat sofa: olive upholstery, three seat and three back cushions, wooden legs",
+  "era": "1970s",
+  "style": "Long Lines painterly low-poly",
+  "condition": "worn",
+  "dimensions_m": {
+   "width": 1.98,
+   "depth": 0.86,
+   "height": 0.81
+  }
+ },
+ "maps": {
+  "albedo": "albedo.png",
+  "signed_depth": "signed_depth.png",
+  "part_ids": "part_ids.png",
+  "orthographic": "orthographic.png",
+  "concept": "concept.png",
+  "canvas_px": [
+   1024,
+   489
+  ],
+  "pixels_per_metre": 160.0,
+  "reference_pixel_scale": 200,
+  "reference_canvas_px": [
+   810,
+   520
+  ]
+ },
+ "depth_range_m": {
+  "inward": 0.01,
+  "outward": 0.03
+ },
+ "panels": [
+  {
+   "id": "seat_base_front",
+   "part_id": "seat_base",
+   "face": "front",
+   "size_m": [
+    1.66,
+    0.16
+   ],
+   "origin_m": [
+    -0.83,
+    -0.42,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    402,
+    272,
+    428
+   ]
+  },
+  {
+   "id": "seat_base_back",
+   "part_id": "seat_base",
+   "face": "back",
+   "size_m": [
+    1.66,
+    0.16
+   ],
+   "origin_m": [
+    0.83,
+    0.26,
+    0.14
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    278,
+    402,
+    544,
+    428
+   ]
+  },
+  {
+   "id": "seat_base_left",
+   "part_id": "seat_base",
+   "face": "left",
+   "size_m": [
+    0.68,
+    0.16
+   ],
+   "origin_m": [
+    -0.83,
+    0.26,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    550,
+    402,
+    659,
+    428
+   ]
+  },
+  {
+   "id": "seat_base_right",
+   "part_id": "seat_base",
+   "face": "right",
+   "size_m": [
+    0.68,
+    0.16
+   ],
+   "origin_m": [
+    0.83,
+    -0.42,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    665,
+    402,
+    774,
+    428
+   ]
+  },
+  {
+   "id": "seat_base_top",
+   "part_id": "seat_base",
+   "face": "top",
+   "size_m": [
+    1.66,
+    0.68
+   ],
+   "origin_m": [
+    -0.83,
+    -0.42,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    138,
+    6,
+    404,
+    115
+   ]
+  },
+  {
+   "id": "seat_base_bottom",
+   "part_id": "seat_base",
+   "face": "bottom",
+   "size_m": [
+    1.66,
+    0.68
+   ],
+   "origin_m": [
+    -0.83,
+    0.26,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    410,
+    6,
+    676,
+    115
+   ]
+  },
+  {
+   "id": "back_frame_front",
+   "part_id": "back_frame",
+   "face": "front",
+   "size_m": [
+    1.66,
+    0.52
+   ],
+   "origin_m": [
+    -0.83,
+    0.25,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    285,
+    150,
+    551,
+    233
+   ]
+  },
+  {
+   "id": "back_frame_back",
+   "part_id": "back_frame",
+   "face": "back",
+   "size_m": [
+    1.66,
+    0.52
+   ],
+   "origin_m": [
+    0.83,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    557,
+    150,
+    823,
+    233
+   ]
+  },
+  {
+   "id": "back_frame_left",
+   "part_id": "back_frame",
+   "face": "left",
+   "size_m": [
+    0.18,
+    0.52
+   ],
+   "origin_m": [
+    -0.83,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    829,
+    150,
+    858,
+    233
+   ]
+  },
+  {
+   "id": "back_frame_right",
+   "part_id": "back_frame",
+   "face": "right",
+   "size_m": [
+    0.18,
+    0.52
+   ],
+   "origin_m": [
+    0.83,
+    0.25,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    864,
+    150,
+    893,
+    233
+   ]
+  },
+  {
+   "id": "back_frame_top",
+   "part_id": "back_frame",
+   "face": "top",
+   "size_m": [
+    1.66,
+    0.18
+   ],
+   "origin_m": [
+    -0.83,
+    0.25,
+    0.66
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    360,
+    329,
+    626,
+    358
+   ]
+  },
+  {
+   "id": "back_frame_bottom",
+   "part_id": "back_frame",
+   "face": "bottom",
+   "size_m": [
+    1.66,
+    0.18
+   ],
+   "origin_m": [
+    -0.83,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    632,
+    329,
+    898,
+    358
+   ]
+  },
+  {
+   "id": "arm_l_front",
+   "part_id": "arm_l",
+   "face": "front",
+   "size_m": [
+    0.17,
+    0.42
+   ],
+   "origin_m": [
+    -0.99,
+    -0.43,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    639,
+    241,
+    666,
+    308
+   ]
+  },
+  {
+   "id": "arm_l_back",
+   "part_id": "arm_l",
+   "face": "back",
+   "size_m": [
+    0.17,
+    0.42
+   ],
+   "origin_m": [
+    -0.82,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    672,
+    241,
+    699,
+    308
+   ]
+  },
+  {
+   "id": "arm_l_left",
+   "part_id": "arm_l",
+   "face": "left",
+   "size_m": [
+    0.86,
+    0.42
+   ],
+   "origin_m": [
+    -0.99,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    705,
+    241,
+    843,
+    308
+   ]
+  },
+  {
+   "id": "arm_l_right",
+   "part_id": "arm_l",
+   "face": "right",
+   "size_m": [
+    0.86,
+    0.42
+   ],
+   "origin_m": [
+    -0.82,
+    -0.43,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    849,
+    241,
+    987,
+    308
+   ]
+  },
+  {
+   "id": "arm_l_top",
+   "part_id": "arm_l",
+   "face": "top",
+   "size_m": [
+    0.17,
+    0.86
+   ],
+   "origin_m": [
+    -0.99,
+    -0.43,
+    0.56
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    6,
+    33,
+    144
+   ]
+  },
+  {
+   "id": "arm_l_bottom",
+   "part_id": "arm_l",
+   "face": "bottom",
+   "size_m": [
+    0.17,
+    0.86
+   ],
+   "origin_m": [
+    -0.99,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    39,
+    6,
+    66,
+    144
+   ]
+  },
+  {
+   "id": "arm_r_front",
+   "part_id": "arm_r",
+   "face": "front",
+   "size_m": [
+    0.17,
+    0.42
+   ],
+   "origin_m": [
+    0.82,
+    -0.43,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    329,
+    33,
+    396
+   ]
+  },
+  {
+   "id": "arm_r_back",
+   "part_id": "arm_r",
+   "face": "back",
+   "size_m": [
+    0.17,
+    0.42
+   ],
+   "origin_m": [
+    0.99,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    39,
+    329,
+    66,
+    396
+   ]
+  },
+  {
+   "id": "arm_r_left",
+   "part_id": "arm_r",
+   "face": "left",
+   "size_m": [
+    0.86,
+    0.42
+   ],
+   "origin_m": [
+    0.82,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    72,
+    329,
+    210,
+    396
+   ]
+  },
+  {
+   "id": "arm_r_right",
+   "part_id": "arm_r",
+   "face": "right",
+   "size_m": [
+    0.86,
+    0.42
+   ],
+   "origin_m": [
+    0.99,
+    -0.43,
+    0.14
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    216,
+    329,
+    354,
+    396
+   ]
+  },
+  {
+   "id": "arm_r_top",
+   "part_id": "arm_r",
+   "face": "top",
+   "size_m": [
+    0.17,
+    0.86
+   ],
+   "origin_m": [
+    0.82,
+    -0.43,
+    0.56
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    72,
+    6,
+    99,
+    144
+   ]
+  },
+  {
+   "id": "arm_r_bottom",
+   "part_id": "arm_r",
+   "face": "bottom",
+   "size_m": [
+    0.17,
+    0.86
+   ],
+   "origin_m": [
+    0.82,
+    0.43,
+    0.14
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    105,
+    6,
+    132,
+    144
+   ]
+  },
+  {
+   "id": "seat_cushion_1_front",
+   "part_id": "seat_cushion_1",
+   "face": "front",
+   "size_m": [
+    0.5467,
+    0.13
+   ],
+   "origin_m": [
+    -0.82,
+    -0.43,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    490,
+    434,
+    577,
+    455
+   ]
+  },
+  {
+   "id": "seat_cushion_1_back",
+   "part_id": "seat_cushion_1",
+   "face": "back",
+   "size_m": [
+    0.5467,
+    0.13
+   ],
+   "origin_m": [
+    -0.2733,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    583,
+    434,
+    670,
+    455
+   ]
+  },
+  {
+   "id": "seat_cushion_1_left",
+   "part_id": "seat_cushion_1",
+   "face": "left",
+   "size_m": [
+    0.53,
+    0.13
+   ],
+   "origin_m": [
+    -0.82,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    676,
+    434,
+    761,
+    455
+   ]
+  },
+  {
+   "id": "seat_cushion_1_right",
+   "part_id": "seat_cushion_1",
+   "face": "right",
+   "size_m": [
+    0.53,
+    0.13
+   ],
+   "origin_m": [
+    -0.2733,
+    -0.43,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    767,
+    434,
+    852,
+    455
+   ]
+  },
+  {
+   "id": "seat_cushion_1_top",
+   "part_id": "seat_cushion_1",
+   "face": "top",
+   "size_m": [
+    0.5467,
+    0.53
+   ],
+   "origin_m": [
+    -0.82,
+    -0.43,
+    0.43
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    682,
+    6,
+    769,
+    91
+   ]
+  },
+  {
+   "id": "seat_cushion_1_bottom",
+   "part_id": "seat_cushion_1",
+   "face": "bottom",
+   "size_m": [
+    0.5467,
+    0.53
+   ],
+   "origin_m": [
+    -0.82,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    775,
+    6,
+    862,
+    91
+   ]
+  },
+  {
+   "id": "seat_cushion_2_front",
+   "part_id": "seat_cushion_2",
+   "face": "front",
+   "size_m": [
+    0.5466,
+    0.13
+   ],
+   "origin_m": [
+    -0.2733,
+    -0.43,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    858,
+    434,
+    945,
+    455
+   ]
+  },
+  {
+   "id": "seat_cushion_2_back",
+   "part_id": "seat_cushion_2",
+   "face": "back",
+   "size_m": [
+    0.5466,
+    0.13
+   ],
+   "origin_m": [
+    0.2733,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    462,
+    93,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_2_left",
+   "part_id": "seat_cushion_2",
+   "face": "left",
+   "size_m": [
+    0.53,
+    0.13
+   ],
+   "origin_m": [
+    -0.2733,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    99,
+    462,
+    184,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_2_right",
+   "part_id": "seat_cushion_2",
+   "face": "right",
+   "size_m": [
+    0.53,
+    0.13
+   ],
+   "origin_m": [
+    0.2733,
+    -0.43,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    190,
+    462,
+    275,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_2_top",
+   "part_id": "seat_cushion_2",
+   "face": "top",
+   "size_m": [
+    0.5466,
+    0.53
+   ],
+   "origin_m": [
+    -0.2733,
+    -0.43,
+    0.43
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    868,
+    6,
+    955,
+    91
+   ]
+  },
+  {
+   "id": "seat_cushion_2_bottom",
+   "part_id": "seat_cushion_2",
+   "face": "bottom",
+   "size_m": [
+    0.5466,
+    0.53
+   ],
+   "origin_m": [
+    -0.2733,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    150,
+    93,
+    235
+   ]
+  },
+  {
+   "id": "seat_cushion_3_front",
+   "part_id": "seat_cushion_3",
+   "face": "front",
+   "size_m": [
+    0.5467,
+    0.13
+   ],
+   "origin_m": [
+    0.2733,
+    -0.43,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    281,
+    462,
+    368,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_3_back",
+   "part_id": "seat_cushion_3",
+   "face": "back",
+   "size_m": [
+    0.5467,
+    0.13
+   ],
+   "origin_m": [
+    0.82,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    374,
+    462,
+    461,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_3_left",
+   "part_id": "seat_cushion_3",
+   "face": "left",
+   "size_m": [
+    0.53,
+    0.13
+   ],
+   "origin_m": [
+    0.2733,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    467,
+    462,
+    552,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_3_right",
+   "part_id": "seat_cushion_3",
+   "face": "right",
+   "size_m": [
+    0.53,
+    0.13
+   ],
+   "origin_m": [
+    0.82,
+    -0.43,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    558,
+    462,
+    643,
+    483
+   ]
+  },
+  {
+   "id": "seat_cushion_3_top",
+   "part_id": "seat_cushion_3",
+   "face": "top",
+   "size_m": [
+    0.5467,
+    0.53
+   ],
+   "origin_m": [
+    0.2733,
+    -0.43,
+    0.43
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    99,
+    150,
+    186,
+    235
+   ]
+  },
+  {
+   "id": "seat_cushion_3_bottom",
+   "part_id": "seat_cushion_3",
+   "face": "bottom",
+   "size_m": [
+    0.5467,
+    0.53
+   ],
+   "origin_m": [
+    0.2733,
+    0.1,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    192,
+    150,
+    279,
+    235
+   ]
+  },
+  {
+   "id": "back_cushion_1_front",
+   "part_id": "back_cushion_1",
+   "face": "front",
+   "size_m": [
+    0.5467,
+    0.51
+   ],
+   "origin_m": [
+    -0.82,
+    0.11,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    899,
+    150,
+    986,
+    232
+   ]
+  },
+  {
+   "id": "back_cushion_1_back",
+   "part_id": "back_cushion_1",
+   "face": "back",
+   "size_m": [
+    0.5467,
+    0.51
+   ],
+   "origin_m": [
+    -0.2733,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    241,
+    93,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_1_left",
+   "part_id": "back_cushion_1",
+   "face": "left",
+   "size_m": [
+    0.14,
+    0.51
+   ],
+   "origin_m": [
+    -0.82,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    99,
+    241,
+    121,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_1_right",
+   "part_id": "back_cushion_1",
+   "face": "right",
+   "size_m": [
+    0.14,
+    0.51
+   ],
+   "origin_m": [
+    -0.2733,
+    0.11,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    127,
+    241,
+    149,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_1_top",
+   "part_id": "back_cushion_1",
+   "face": "top",
+   "size_m": [
+    0.5467,
+    0.14
+   ],
+   "origin_m": [
+    -0.82,
+    0.11,
+    0.81
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    780,
+    402,
+    867,
+    424
+   ]
+  },
+  {
+   "id": "back_cushion_1_bottom",
+   "part_id": "back_cushion_1",
+   "face": "bottom",
+   "size_m": [
+    0.5467,
+    0.14
+   ],
+   "origin_m": [
+    -0.82,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    873,
+    402,
+    960,
+    424
+   ]
+  },
+  {
+   "id": "back_cushion_2_front",
+   "part_id": "back_cushion_2",
+   "face": "front",
+   "size_m": [
+    0.5466,
+    0.51
+   ],
+   "origin_m": [
+    -0.2733,
+    0.11,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    155,
+    241,
+    242,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_2_back",
+   "part_id": "back_cushion_2",
+   "face": "back",
+   "size_m": [
+    0.5466,
+    0.51
+   ],
+   "origin_m": [
+    0.2733,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    248,
+    241,
+    335,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_2_left",
+   "part_id": "back_cushion_2",
+   "face": "left",
+   "size_m": [
+    0.14,
+    0.51
+   ],
+   "origin_m": [
+    -0.2733,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    341,
+    241,
+    363,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_2_right",
+   "part_id": "back_cushion_2",
+   "face": "right",
+   "size_m": [
+    0.14,
+    0.51
+   ],
+   "origin_m": [
+    0.2733,
+    0.11,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    369,
+    241,
+    391,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_2_top",
+   "part_id": "back_cushion_2",
+   "face": "top",
+   "size_m": [
+    0.5466,
+    0.14
+   ],
+   "origin_m": [
+    -0.2733,
+    0.11,
+    0.81
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    6,
+    434,
+    93,
+    456
+   ]
+  },
+  {
+   "id": "back_cushion_2_bottom",
+   "part_id": "back_cushion_2",
+   "face": "bottom",
+   "size_m": [
+    0.5466,
+    0.14
+   ],
+   "origin_m": [
+    -0.2733,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    99,
+    434,
+    186,
+    456
+   ]
+  },
+  {
+   "id": "back_cushion_3_front",
+   "part_id": "back_cushion_3",
+   "face": "front",
+   "size_m": [
+    0.5467,
+    0.51
+   ],
+   "origin_m": [
+    0.2733,
+    0.11,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    397,
+    241,
+    484,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_3_back",
+   "part_id": "back_cushion_3",
+   "face": "back",
+   "size_m": [
+    0.5467,
+    0.51
+   ],
+   "origin_m": [
+    0.82,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    -1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    490,
+    241,
+    577,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_3_left",
+   "part_id": "back_cushion_3",
+   "face": "left",
+   "size_m": [
+    0.14,
+    0.51
+   ],
+   "origin_m": [
+    0.2733,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    -1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    583,
+    241,
+    605,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_3_right",
+   "part_id": "back_cushion_3",
+   "face": "right",
+   "size_m": [
+    0.14,
+    0.51
+   ],
+   "origin_m": [
+    0.82,
+    0.11,
+    0.3
+   ],
+   "u_axis": [
+    0,
+    1,
+    0
+   ],
+   "v_axis": [
+    0,
+    0,
+    1
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    611,
+    241,
+    633,
+    323
+   ]
+  },
+  {
+   "id": "back_cushion_3_top",
+   "part_id": "back_cushion_3",
+   "face": "top",
+   "size_m": [
+    0.5467,
+    0.14
+   ],
+   "origin_m": [
+    0.2733,
+    0.11,
+    0.81
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    192,
+    434,
+    279,
+    456
+   ]
+  },
+  {
+   "id": "back_cushion_3_bottom",
+   "part_id": "back_cushion_3",
+   "face": "bottom",
+   "size_m": [
+    0.5467,
+    0.14
+   ],
+   "origin_m": [
+    0.2733,
+    0.25,
+    0.3
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    285,
+    434,
+    372,
+    456
+   ]
+  },
+  {
+   "id": "leg_1_cap",
+   "part_id": "leg_1",
+   "face": "custom",
+   "size_m": [
+    0.044,
+    0.044
+   ],
+   "origin_m": [
+    -0.927,
+    -0.348,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    649,
+    462,
+    656,
+    469
+   ]
+  },
+  {
+   "id": "leg_1_wrap",
+   "part_id": "leg_1",
+   "face": "custom",
+   "size_m": [
+    0.13823,
+    0.14
+   ],
+   "origin_m": [
+    -0.927,
+    -0.348,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "notes": "wrap-around side texture (u = circumference)",
+   "rect_px": [
+    378,
+    434,
+    400,
+    456
+   ]
+  },
+  {
+   "id": "leg_2_cap",
+   "part_id": "leg_2",
+   "face": "custom",
+   "size_m": [
+    0.044,
+    0.044
+   ],
+   "origin_m": [
+    0.883,
+    -0.348,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    662,
+    462,
+    669,
+    469
+   ]
+  },
+  {
+   "id": "leg_2_wrap",
+   "part_id": "leg_2",
+   "face": "custom",
+   "size_m": [
+    0.13823,
+    0.14
+   ],
+   "origin_m": [
+    0.883,
+    -0.348,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "notes": "wrap-around side texture (u = circumference)",
+   "rect_px": [
+    406,
+    434,
+    428,
+    456
+   ]
+  },
+  {
+   "id": "leg_3_cap",
+   "part_id": "leg_3",
+   "face": "custom",
+   "size_m": [
+    0.044,
+    0.044
+   ],
+   "origin_m": [
+    -0.927,
+    0.392,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    675,
+    462,
+    682,
+    469
+   ]
+  },
+  {
+   "id": "leg_3_wrap",
+   "part_id": "leg_3",
+   "face": "custom",
+   "size_m": [
+    0.13823,
+    0.14
+   ],
+   "origin_m": [
+    -0.927,
+    0.392,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "notes": "wrap-around side texture (u = circumference)",
+   "rect_px": [
+    434,
+    434,
+    456,
+    456
+   ]
+  },
+  {
+   "id": "leg_4_cap",
+   "part_id": "leg_4",
+   "face": "custom",
+   "size_m": [
+    0.044,
+    0.044
+   ],
+   "origin_m": [
+    0.883,
+    0.392,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "rect_px": [
+    688,
+    462,
+    695,
+    469
+   ]
+  },
+  {
+   "id": "leg_4_wrap",
+   "part_id": "leg_4",
+   "face": "custom",
+   "size_m": [
+    0.13823,
+    0.14
+   ],
+   "origin_m": [
+    0.883,
+    0.392,
+    0.0
+   ],
+   "u_axis": [
+    1,
+    0,
+    0
+   ],
+   "v_axis": [
+    0,
+    -1,
+    0
+   ],
+   "curve": {
+    "type": "flat"
+   },
+   "notes": "wrap-around side texture (u = circumference)",
+   "rect_px": [
+    462,
+    434,
+    484,
+    456
+   ]
+  }
+ ],
+ "orthographic_views": {
+  "front": [
+   6,
+   184,
+   402,
+   346
+  ],
+  "back": [
+   408,
+   184,
+   804,
+   346
+  ],
+  "left": [
+   6,
+   352,
+   178,
+   514
+  ],
+  "right": [
+   184,
+   352,
+   356,
+   514
+  ],
+  "top": [
+   6,
+   6,
+   402,
+   178
+  ],
+  "bottom": [
+   408,
+   6,
+   804,
+   178
+  ]
+ },
+ "assembly_file": "assembly.json",
+ "source_notes": [
+  "Generated by tools/v1_pack.py from kit.json.",
+  "Source: ChatGPT concept sheet 'LONG LINES / FACTORY V1 ASSET PACKAGE - 1970s COUCH (SOFA)'. Its maps are 1/3-size panels inside one image and not to scale; panels are resampled to 160 px/m here.",
+  "Proportions from the painted front/side/rear views (arms 17 cm, cushions 55 cm); the sheet's JSON excerpt said 62 cm cushions, which would leave 6 cm arms.",
+  "Faces the sheet does not paint (cushion sides/backs/bottoms, hidden frame faces) reuse fabric from the nearest painted panel.",
+  "The orthographic views are resampled to the declared size; the sheet's top view was about 30% short."
+ ]
+}

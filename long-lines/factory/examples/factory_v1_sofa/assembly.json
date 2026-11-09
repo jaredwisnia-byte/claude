@@ -1,0 +1,1209 @@
+{
+ "format": "FACTORY_V1_ASSEMBLY",
+ "asset_id": "sofa_1970s_3seat",
+ "expected_manifold": true,
+ "parts": [
+  {
+   "id": "seat_base",
+   "panels": [
+    "seat_base_front",
+    "seat_base_back",
+    "seat_base_left",
+    "seat_base_right",
+    "seat_base_top",
+    "seat_base_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "main_body",
+   "construction": "closed_box"
+  },
+  {
+   "id": "back_frame",
+   "panels": [
+    "back_frame_front",
+    "back_frame_back",
+    "back_frame_left",
+    "back_frame_right",
+    "back_frame_top",
+    "back_frame_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "main_body",
+   "parent": "seat_base",
+   "construction": "closed_box"
+  },
+  {
+   "id": "arm_l",
+   "panels": [
+    "arm_l_front",
+    "arm_l_back",
+    "arm_l_left",
+    "arm_l_right",
+    "arm_l_top",
+    "arm_l_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "main_body",
+   "parent": "seat_base",
+   "construction": "closed_box"
+  },
+  {
+   "id": "arm_r",
+   "panels": [
+    "arm_r_front",
+    "arm_r_back",
+    "arm_r_left",
+    "arm_r_right",
+    "arm_r_top",
+    "arm_r_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "main_body",
+   "parent": "seat_base",
+   "construction": "closed_box"
+  },
+  {
+   "id": "seat_cushion_1",
+   "panels": [
+    "seat_cushion_1_front",
+    "seat_cushion_1_back",
+    "seat_cushion_1_left",
+    "seat_cushion_1_right",
+    "seat_cushion_1_top",
+    "seat_cushion_1_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "soft",
+   "parent": "seat_base",
+   "construction": "closed_box"
+  },
+  {
+   "id": "seat_cushion_2",
+   "panels": [
+    "seat_cushion_2_front",
+    "seat_cushion_2_back",
+    "seat_cushion_2_left",
+    "seat_cushion_2_right",
+    "seat_cushion_2_top",
+    "seat_cushion_2_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "soft",
+   "parent": "seat_base",
+   "construction": "closed_box"
+  },
+  {
+   "id": "seat_cushion_3",
+   "panels": [
+    "seat_cushion_3_front",
+    "seat_cushion_3_back",
+    "seat_cushion_3_left",
+    "seat_cushion_3_right",
+    "seat_cushion_3_top",
+    "seat_cushion_3_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "soft",
+   "parent": "seat_base",
+   "construction": "closed_box"
+  },
+  {
+   "id": "back_cushion_1",
+   "panels": [
+    "back_cushion_1_front",
+    "back_cushion_1_back",
+    "back_cushion_1_left",
+    "back_cushion_1_right",
+    "back_cushion_1_top",
+    "back_cushion_1_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "soft",
+   "parent": "back_frame",
+   "construction": "closed_box"
+  },
+  {
+   "id": "back_cushion_2",
+   "panels": [
+    "back_cushion_2_front",
+    "back_cushion_2_back",
+    "back_cushion_2_left",
+    "back_cushion_2_right",
+    "back_cushion_2_top",
+    "back_cushion_2_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "soft",
+   "parent": "back_frame",
+   "construction": "closed_box"
+  },
+  {
+   "id": "back_cushion_3",
+   "panels": [
+    "back_cushion_3_front",
+    "back_cushion_3_back",
+    "back_cushion_3_left",
+    "back_cushion_3_right",
+    "back_cushion_3_top",
+    "back_cushion_3_bottom"
+   ],
+   "closed_solid": true,
+   "semantic_class": "soft",
+   "parent": "back_frame",
+   "construction": "closed_box"
+  },
+  {
+   "id": "leg_1",
+   "panels": [
+    "leg_1_cap",
+    "leg_1_wrap"
+   ],
+   "closed_solid": true,
+   "semantic_class": "support",
+   "parent": "arm_l",
+   "construction": "cylinder",
+   "anchor_m": [
+    -0.927,
+    -0.392,
+    0.0
+   ],
+   "dimensions_m": [
+    0.044,
+    0.044,
+    0.14
+   ]
+  },
+  {
+   "id": "leg_2",
+   "panels": [
+    "leg_2_cap",
+    "leg_2_wrap"
+   ],
+   "closed_solid": true,
+   "semantic_class": "support",
+   "parent": "arm_r",
+   "construction": "cylinder",
+   "anchor_m": [
+    0.883,
+    -0.392,
+    0.0
+   ],
+   "dimensions_m": [
+    0.044,
+    0.044,
+    0.14
+   ]
+  },
+  {
+   "id": "leg_3",
+   "panels": [
+    "leg_3_cap",
+    "leg_3_wrap"
+   ],
+   "closed_solid": true,
+   "semantic_class": "support",
+   "parent": "arm_l",
+   "construction": "cylinder",
+   "anchor_m": [
+    -0.927,
+    0.348,
+    0.0
+   ],
+   "dimensions_m": [
+    0.044,
+    0.044,
+    0.14
+   ]
+  },
+  {
+   "id": "leg_4",
+   "panels": [
+    "leg_4_cap",
+    "leg_4_wrap"
+   ],
+   "closed_solid": true,
+   "semantic_class": "support",
+   "parent": "arm_r",
+   "construction": "cylinder",
+   "anchor_m": [
+    0.883,
+    0.348,
+    0.0
+   ],
+   "dimensions_m": [
+    0.044,
+    0.044,
+    0.14
+   ]
+  }
+ ],
+ "connections": [
+  {
+   "a": "seat_base_front",
+   "a_edge": "u0",
+   "b": "seat_base_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_front",
+   "a_edge": "u1",
+   "b": "seat_base_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_front",
+   "a_edge": "v1",
+   "b": "seat_base_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_front",
+   "a_edge": "v0",
+   "b": "seat_base_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_back",
+   "a_edge": "u1",
+   "b": "seat_base_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_back",
+   "a_edge": "u0",
+   "b": "seat_base_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_back",
+   "a_edge": "v1",
+   "b": "seat_base_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_back",
+   "a_edge": "v0",
+   "b": "seat_base_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_left",
+   "a_edge": "v1",
+   "b": "seat_base_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_left",
+   "a_edge": "v0",
+   "b": "seat_base_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_right",
+   "a_edge": "v1",
+   "b": "seat_base_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_base_right",
+   "a_edge": "v0",
+   "b": "seat_base_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_front",
+   "a_edge": "u0",
+   "b": "back_frame_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_front",
+   "a_edge": "u1",
+   "b": "back_frame_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_front",
+   "a_edge": "v1",
+   "b": "back_frame_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_front",
+   "a_edge": "v0",
+   "b": "back_frame_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_back",
+   "a_edge": "u1",
+   "b": "back_frame_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_back",
+   "a_edge": "u0",
+   "b": "back_frame_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_back",
+   "a_edge": "v1",
+   "b": "back_frame_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_back",
+   "a_edge": "v0",
+   "b": "back_frame_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_left",
+   "a_edge": "v1",
+   "b": "back_frame_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_left",
+   "a_edge": "v0",
+   "b": "back_frame_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_right",
+   "a_edge": "v1",
+   "b": "back_frame_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_frame_right",
+   "a_edge": "v0",
+   "b": "back_frame_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_front",
+   "a_edge": "u0",
+   "b": "arm_l_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_front",
+   "a_edge": "u1",
+   "b": "arm_l_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_front",
+   "a_edge": "v1",
+   "b": "arm_l_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_front",
+   "a_edge": "v0",
+   "b": "arm_l_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_back",
+   "a_edge": "u1",
+   "b": "arm_l_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_back",
+   "a_edge": "u0",
+   "b": "arm_l_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_back",
+   "a_edge": "v1",
+   "b": "arm_l_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_back",
+   "a_edge": "v0",
+   "b": "arm_l_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_left",
+   "a_edge": "v1",
+   "b": "arm_l_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_left",
+   "a_edge": "v0",
+   "b": "arm_l_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_right",
+   "a_edge": "v1",
+   "b": "arm_l_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_l_right",
+   "a_edge": "v0",
+   "b": "arm_l_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_front",
+   "a_edge": "u0",
+   "b": "arm_r_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_front",
+   "a_edge": "u1",
+   "b": "arm_r_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_front",
+   "a_edge": "v1",
+   "b": "arm_r_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_front",
+   "a_edge": "v0",
+   "b": "arm_r_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_back",
+   "a_edge": "u1",
+   "b": "arm_r_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_back",
+   "a_edge": "u0",
+   "b": "arm_r_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_back",
+   "a_edge": "v1",
+   "b": "arm_r_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_back",
+   "a_edge": "v0",
+   "b": "arm_r_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_left",
+   "a_edge": "v1",
+   "b": "arm_r_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_left",
+   "a_edge": "v0",
+   "b": "arm_r_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_right",
+   "a_edge": "v1",
+   "b": "arm_r_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "arm_r_right",
+   "a_edge": "v0",
+   "b": "arm_r_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_front",
+   "a_edge": "u0",
+   "b": "seat_cushion_1_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_front",
+   "a_edge": "u1",
+   "b": "seat_cushion_1_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_front",
+   "a_edge": "v1",
+   "b": "seat_cushion_1_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_front",
+   "a_edge": "v0",
+   "b": "seat_cushion_1_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_back",
+   "a_edge": "u1",
+   "b": "seat_cushion_1_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_back",
+   "a_edge": "u0",
+   "b": "seat_cushion_1_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_back",
+   "a_edge": "v1",
+   "b": "seat_cushion_1_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_back",
+   "a_edge": "v0",
+   "b": "seat_cushion_1_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_left",
+   "a_edge": "v1",
+   "b": "seat_cushion_1_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_left",
+   "a_edge": "v0",
+   "b": "seat_cushion_1_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_right",
+   "a_edge": "v1",
+   "b": "seat_cushion_1_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_1_right",
+   "a_edge": "v0",
+   "b": "seat_cushion_1_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_front",
+   "a_edge": "u0",
+   "b": "seat_cushion_2_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_front",
+   "a_edge": "u1",
+   "b": "seat_cushion_2_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_front",
+   "a_edge": "v1",
+   "b": "seat_cushion_2_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_front",
+   "a_edge": "v0",
+   "b": "seat_cushion_2_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_back",
+   "a_edge": "u1",
+   "b": "seat_cushion_2_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_back",
+   "a_edge": "u0",
+   "b": "seat_cushion_2_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_back",
+   "a_edge": "v1",
+   "b": "seat_cushion_2_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_back",
+   "a_edge": "v0",
+   "b": "seat_cushion_2_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_left",
+   "a_edge": "v1",
+   "b": "seat_cushion_2_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_left",
+   "a_edge": "v0",
+   "b": "seat_cushion_2_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_right",
+   "a_edge": "v1",
+   "b": "seat_cushion_2_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_2_right",
+   "a_edge": "v0",
+   "b": "seat_cushion_2_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_front",
+   "a_edge": "u0",
+   "b": "seat_cushion_3_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_front",
+   "a_edge": "u1",
+   "b": "seat_cushion_3_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_front",
+   "a_edge": "v1",
+   "b": "seat_cushion_3_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_front",
+   "a_edge": "v0",
+   "b": "seat_cushion_3_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_back",
+   "a_edge": "u1",
+   "b": "seat_cushion_3_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_back",
+   "a_edge": "u0",
+   "b": "seat_cushion_3_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_back",
+   "a_edge": "v1",
+   "b": "seat_cushion_3_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_back",
+   "a_edge": "v0",
+   "b": "seat_cushion_3_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_left",
+   "a_edge": "v1",
+   "b": "seat_cushion_3_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_left",
+   "a_edge": "v0",
+   "b": "seat_cushion_3_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_right",
+   "a_edge": "v1",
+   "b": "seat_cushion_3_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "seat_cushion_3_right",
+   "a_edge": "v0",
+   "b": "seat_cushion_3_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_front",
+   "a_edge": "u0",
+   "b": "back_cushion_1_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_front",
+   "a_edge": "u1",
+   "b": "back_cushion_1_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_front",
+   "a_edge": "v1",
+   "b": "back_cushion_1_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_front",
+   "a_edge": "v0",
+   "b": "back_cushion_1_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_back",
+   "a_edge": "u1",
+   "b": "back_cushion_1_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_back",
+   "a_edge": "u0",
+   "b": "back_cushion_1_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_back",
+   "a_edge": "v1",
+   "b": "back_cushion_1_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_back",
+   "a_edge": "v0",
+   "b": "back_cushion_1_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_left",
+   "a_edge": "v1",
+   "b": "back_cushion_1_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_left",
+   "a_edge": "v0",
+   "b": "back_cushion_1_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_right",
+   "a_edge": "v1",
+   "b": "back_cushion_1_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_1_right",
+   "a_edge": "v0",
+   "b": "back_cushion_1_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_front",
+   "a_edge": "u0",
+   "b": "back_cushion_2_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_front",
+   "a_edge": "u1",
+   "b": "back_cushion_2_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_front",
+   "a_edge": "v1",
+   "b": "back_cushion_2_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_front",
+   "a_edge": "v0",
+   "b": "back_cushion_2_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_back",
+   "a_edge": "u1",
+   "b": "back_cushion_2_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_back",
+   "a_edge": "u0",
+   "b": "back_cushion_2_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_back",
+   "a_edge": "v1",
+   "b": "back_cushion_2_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_back",
+   "a_edge": "v0",
+   "b": "back_cushion_2_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_left",
+   "a_edge": "v1",
+   "b": "back_cushion_2_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_left",
+   "a_edge": "v0",
+   "b": "back_cushion_2_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_right",
+   "a_edge": "v1",
+   "b": "back_cushion_2_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_2_right",
+   "a_edge": "v0",
+   "b": "back_cushion_2_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_front",
+   "a_edge": "u0",
+   "b": "back_cushion_3_left",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_front",
+   "a_edge": "u1",
+   "b": "back_cushion_3_right",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_front",
+   "a_edge": "v1",
+   "b": "back_cushion_3_top",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_front",
+   "a_edge": "v0",
+   "b": "back_cushion_3_bottom",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_back",
+   "a_edge": "u1",
+   "b": "back_cushion_3_left",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_back",
+   "a_edge": "u0",
+   "b": "back_cushion_3_right",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_back",
+   "a_edge": "v1",
+   "b": "back_cushion_3_top",
+   "b_edge": "v1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_back",
+   "a_edge": "v0",
+   "b": "back_cushion_3_bottom",
+   "b_edge": "v0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_left",
+   "a_edge": "v1",
+   "b": "back_cushion_3_top",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_left",
+   "a_edge": "v0",
+   "b": "back_cushion_3_bottom",
+   "b_edge": "u0",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_right",
+   "a_edge": "v1",
+   "b": "back_cushion_3_top",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  },
+  {
+   "a": "back_cushion_3_right",
+   "a_edge": "v0",
+   "b": "back_cushion_3_bottom",
+   "b_edge": "u1",
+   "operation": "weld",
+   "tolerance_m": 0.0005
+  }
+ ],
+ "cavities": [],
+ "assembly_notes": [
+  "Generated by tools/v1_pack.py; welds drafted from coincident edges.",
+  "Back is vertical: the side views show it raked, and V1 has no rotation yet.",
+  "Not built: tufting buttons (painted on the back cushions; only 4 of 6 painted as parts), tapered legs (cylinders), the draped blanket (no cloth construction).",
+  "Seat base front set 1 cm behind the arm fronts (flush faces z-fight)."
+ ]
+}

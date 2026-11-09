@@ -1,0 +1,61 @@
+name: FACTORY_V1 assembly build
+
+on:
+  push:
+    paths:
+      - ".github/workflows/factory-v1-assembly.yml"
+      - "long-lines/factory/schemas/**"
+      - "long-lines/factory/examples/factory_v1_*/**"
+      - "long-lines/tools/validate_package.py"
+      - "long-lines/tools/factory_v1.py"
+      - "long-lines/tools/factory_v1_blender.py"
+      - "long-lines/tools/v1_pack.py"
+      - "long-lines/tools/propkit/v1_*.py"
+      - "long-lines/tests/test_factory_v1_*.py"
+  pull_request:
+    paths:
+      - ".github/workflows/factory-v1-assembly.yml"
+      - "long-lines/factory/schemas/**"
+      - "long-lines/factory/examples/factory_v1_*/**"
+      - "long-lines/tools/validate_package.py"
+      - "long-lines/tools/factory_v1.py"
+      - "long-lines/tools/factory_v1_blender.py"
+      - "long-lines/tools/v1_pack.py"
+      - "long-lines/tools/propkit/v1_*.py"
+      - "long-lines/tests/test_factory_v1_*.py"
+
+concurrency:
+  group: factory-v1-assembly-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender and Python packages (system Python, shared with Blender)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends blender python3-pil python3-numpy python3-jsonschema
+          blender --version | head -1
+      - name: Geometry and package regression tests (no Blender)
+        working-directory: long-lines
+        run: python3 -m unittest -v tests.test_factory_v1_package tests.test_factory_v1_assembly
+      - name: Build, export and reimport-verify both example packages
+        run: |
+          python3 long-lines/factory/examples/factory_v1_crt_tv/generate_demo_maps.py
+          python3 long-lines/factory/examples/factory_v1_toaster/generate_maps.py
+          python3 long-lines/tools/v1_pack.py long-lines/factory/examples/factory_v1_sofa/kit.json
+          status=0
+          for pkg in factory_v1_crt_tv factory_v1_toaster factory_v1_sofa; do
+            python3 long-lines/tools/factory_v1.py long-lines/factory/examples/$pkg/asset.json || status=1
+          done
+          exit $status
+      - name: Upload GLBs, qa.json and renders
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factory-v1-builds
+          path: |
+            long-lines/factory/out/**
+          if-no-files-found: warn

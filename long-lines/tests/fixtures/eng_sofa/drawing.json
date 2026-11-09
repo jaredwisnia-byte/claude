@@ -1,0 +1,16 @@
+{
+ "views": [
+  "front",
+  "back",
+  "right",
+  "left",
+  "top",
+  "bottom"
+ ],
+ "dimensions_m": {
+  "width": 1.98,
+  "depth": 0.86,
+  "height": 0.81
+ },
+ "convention": "third-angle; solid = visible edge, dashed = hidden edge; front looks toward +depth"
+}

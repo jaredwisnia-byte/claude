@@ -7,6 +7,8 @@ Run under Blender (all stations share one process):
     blender -b --factory-startup -P tools/factory.py -- build NAME... | --pending | --all-orders
     blender -b --factory-startup -P tools/factory.py -- qa NAME... | --library
     blender -b --factory-startup -P tools/factory.py -- report
+    blender -b --factory-startup -P tools/factory.py -- v1 PACKAGE/asset.json [--no-render]
+        (FACTORY_V1 painted construction packages; same as python3 tools/factory_v1.py)
 
 Stations: intake (classify the reference, split views, size from the category table,
 write a work order) -> build (the order's production line) -> bake/export (propkit.bake)
@@ -461,6 +463,11 @@ if __name__ == "__main__":
     elif cmd == "preview":
         for n in rest:
             print("PREVIEW", render_trim_preview(n))
+    elif cmd == "v1":            # FACTORY_V1 package: preflight -> build -> GLB -> reimport QA
+        import subprocess
+        import bpy
+        py = os.environ.get("FACTORY_PYTHON", "python3")
+        sys.exit(subprocess.call([py, os.path.join(HERE, "factory_v1.py")] + rest + ["--blender", bpy.app.binary_path]))
     elif cmd == "qa":
         names = sorted(json.load(open(os.path.join(LIB, "library.json")))) if "--library" in rest else rest
         gate(names)

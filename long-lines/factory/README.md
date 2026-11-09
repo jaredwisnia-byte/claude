@@ -1,5 +1,39 @@
 # The asset factory
 
+## FACTORY_V1 — structured paint-first package preflight
+
+The ChatGPT project command `/factory [object description]` uses the
+[FACTORY_V1 package specification](FACTORY_V1.md), the
+[standard image-map palette](map_spec.md), the
+[reusable prompt](factory_prompt.md), and two JSON schemas in `schemas/`.
+
+This is an **input validation layer**, not a replacement for the existing
+asset production lines. Run `tools/validate_package.py` on `asset.json`
+before any Blender build. A passing preflight does **not** prove a GLB is
+watertight or game-ready. The source of truth is the dimensioned UV net;
+the old image-projection factory is retained for comparative testing.
+
+To validate the synthetic CRT sample without Blender:
+
+```bash
+python long-lines/factory/examples/factory_v1_crt_tv/generate_demo_maps.py
+python long-lines/tools/validate_package.py long-lines/factory/examples/factory_v1_crt_tv/asset.json
+```
+
+**Building a package** (validate -> build -> GLB -> fresh-Blender reimport QA -> renders):
+
+```bash
+python3 long-lines/tools/factory_v1.py long-lines/factory/examples/factory_v1_crt_tv/asset.json
+# or from Blender: blender -b --factory-startup -P long-lines/tools/factory.py -- v1 <asset.json>
+# draft the welds of a closed box instead of typing them: --suggest-welds <part_id>
+```
+
+One interpreter (`tools/propkit/v1_geometry.py` + `v1_blender.py`) builds every package from
+its schema; there is no per-object code. Output goes to `factory/out/<asset_id>/` (git-ignored):
+the GLB, `qa.json` (pass/fail and every measurement), five renders and a contact sheet. What it
+builds, what it reports as unsupported and how QA decides: [FACTORY_V1.md](FACTORY_V1.md),
+"Blender builder". Report on the first two objects: `docs/factory_v1/REPORT.md`.
+
 The factory is the product; the models are its output. This folder holds the factory's
 standards, work orders, ledger and report. The machinery is in `tools/`.
 

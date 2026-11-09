@@ -1,0 +1,1022 @@
+{
+ "asset_id": "sofa_1970s_3seat",
+ "pixels_per_metre": 160,
+ "source": "source_sheet.webp",
+ "background_rgb": [
+  30,
+  30,
+  32
+ ],
+ "brief": {
+  "description": "1970s three-seat sofa: olive upholstery, three seat and three back cushions, wooden legs",
+  "era": "1970s",
+  "style": "Long Lines painterly low-poly",
+  "condition": "worn",
+  "dimensions_m": {
+   "width": 1.98,
+   "depth": 0.86,
+   "height": 0.81
+  }
+ },
+ "depth_range_m": {
+  "inward": 0.01,
+  "outward": 0.03
+ },
+ "parts": [
+  {
+   "id": "seat_base",
+   "kind": "box",
+   "min": [
+    -0.83,
+    -0.42,
+    0.14
+   ],
+   "max": [
+    0.83,
+    0.26,
+    0.3
+   ],
+   "class": "main_body",
+   "faces": {
+    "top": {
+     "src": [
+      496,
+      624,
+      689,
+      669
+     ]
+    },
+    "front": {
+     "src": [
+      496,
+      671,
+      689,
+      707
+     ]
+    },
+    "bottom": {
+     "src": [
+      501,
+      711,
+      678,
+      763
+     ]
+    },
+    "*": {
+     "src": [
+      496,
+      624,
+      689,
+      669
+     ],
+     "sub": [
+      0.1,
+      0.1,
+      0.9,
+      0.9
+     ]
+    }
+   }
+  },
+  {
+   "id": "back_frame",
+   "kind": "box",
+   "min": [
+    -0.83,
+    0.25,
+    0.14
+   ],
+   "max": [
+    0.83,
+    0.43,
+    0.66
+   ],
+   "class": "main_body",
+   "parent": "seat_base",
+   "faces": {
+    "back": {
+     "src": [
+      462,
+      554,
+      724,
+      623
+     ]
+    },
+    "front": {
+     "src": [
+      462,
+      554,
+      724,
+      623
+     ],
+     "sub": [
+      0.05,
+      0.1,
+      0.95,
+      0.9
+     ]
+    },
+    "top": {
+     "src": [
+      462,
+      554,
+      724,
+      623
+     ],
+     "sub": [
+      0,
+      0,
+      1,
+      0.22
+     ]
+    },
+    "bottom": {
+     "src": [
+      501,
+      711,
+      678,
+      763
+     ]
+    },
+    "*": {
+     "src": [
+      462,
+      554,
+      724,
+      623
+     ],
+     "sub": [
+      0,
+      0,
+      0.15,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "id": "arm_l",
+   "kind": "box",
+   "min": [
+    -0.99,
+    -0.43,
+    0.14
+   ],
+   "max": [
+    -0.82,
+    0.43,
+    0.56
+   ],
+   "class": "main_body",
+   "parent": "seat_base",
+   "faces": {
+    "left": {
+     "src": [
+      418,
+      572,
+      459,
+      680
+     ],
+     "rotate": 90
+    },
+    "right": {
+     "src": [
+      461,
+      632,
+      493,
+      710
+     ],
+     "rotate": 90
+    },
+    "front": {
+     "src": [
+      460,
+      719,
+      496,
+      765
+     ]
+    },
+    "top": {
+     "src": [
+      461,
+      632,
+      493,
+      710
+     ]
+    },
+    "back": {
+     "src": [
+      418,
+      572,
+      459,
+      680
+     ],
+     "rotate": 90
+    },
+    "bottom": {
+     "src": [
+      501,
+      711,
+      678,
+      763
+     ]
+    }
+   }
+  },
+  {
+   "id": "arm_r",
+   "kind": "box",
+   "min": [
+    0.82,
+    -0.43,
+    0.14
+   ],
+   "max": [
+    0.99,
+    0.43,
+    0.56
+   ],
+   "class": "main_body",
+   "parent": "seat_base",
+   "faces": {
+    "right": {
+     "src": [
+      726,
+      579,
+      787,
+      682
+     ],
+     "rotate": 270
+    },
+    "left": {
+     "src": [
+      692,
+      631,
+      724,
+      709
+     ],
+     "rotate": 270
+    },
+    "front": {
+     "src": [
+      687,
+      720,
+      721,
+      768
+     ]
+    },
+    "top": {
+     "src": [
+      692,
+      631,
+      724,
+      709
+     ]
+    },
+    "back": {
+     "src": [
+      726,
+      579,
+      787,
+      682
+     ],
+     "rotate": 270
+    },
+    "bottom": {
+     "src": [
+      501,
+      711,
+      678,
+      763
+     ]
+    }
+   }
+  },
+  {
+   "id": "seat_cushion_1",
+   "kind": "box",
+   "min": [
+    -0.82,
+    -0.43,
+    0.3
+   ],
+   "max": [
+    -0.2733,
+    0.1,
+    0.43
+   ],
+   "class": "soft",
+   "parent": "seat_base",
+   "faces": {
+    "top": {
+     "src": [
+      433,
+      491,
+      535,
+      552
+     ],
+     "depth": [
+      837,
+      491,
+      935,
+      557
+     ]
+    },
+    "front": {
+     "src": [
+      433,
+      491,
+      535,
+      552
+     ],
+     "sub": [
+      0,
+      0.7,
+      1,
+      1
+     ]
+    },
+    "left": {
+     "src": [
+      433,
+      491,
+      535,
+      552
+     ],
+     "sub": [
+      0,
+      0.1,
+      0.2,
+      0.9
+     ]
+    },
+    "right": {
+     "src": [
+      433,
+      491,
+      535,
+      552
+     ],
+     "sub": [
+      0.8,
+      0.1,
+      1,
+      0.9
+     ]
+    },
+    "*": {
+     "src": [
+      433,
+      491,
+      535,
+      552
+     ],
+     "sub": [
+      0.2,
+      0.2,
+      0.8,
+      0.8
+     ]
+    }
+   }
+  },
+  {
+   "id": "seat_cushion_2",
+   "kind": "box",
+   "min": [
+    -0.2733,
+    -0.43,
+    0.3
+   ],
+   "max": [
+    0.2733,
+    0.1,
+    0.43
+   ],
+   "class": "soft",
+   "parent": "seat_base",
+   "faces": {
+    "top": {
+     "src": [
+      537,
+      491,
+      637,
+      552
+     ],
+     "depth": [
+      939,
+      491,
+      1031,
+      557
+     ]
+    },
+    "front": {
+     "src": [
+      537,
+      491,
+      637,
+      552
+     ],
+     "sub": [
+      0,
+      0.7,
+      1,
+      1
+     ]
+    },
+    "left": {
+     "src": [
+      537,
+      491,
+      637,
+      552
+     ],
+     "sub": [
+      0,
+      0.1,
+      0.2,
+      0.9
+     ]
+    },
+    "right": {
+     "src": [
+      537,
+      491,
+      637,
+      552
+     ],
+     "sub": [
+      0.8,
+      0.1,
+      1,
+      0.9
+     ]
+    },
+    "*": {
+     "src": [
+      537,
+      491,
+      637,
+      552
+     ],
+     "sub": [
+      0.2,
+      0.2,
+      0.8,
+      0.8
+     ]
+    }
+   }
+  },
+  {
+   "id": "seat_cushion_3",
+   "kind": "box",
+   "min": [
+    0.2733,
+    -0.43,
+    0.3
+   ],
+   "max": [
+    0.82,
+    0.1,
+    0.43
+   ],
+   "class": "soft",
+   "parent": "seat_base",
+   "faces": {
+    "top": {
+     "src": [
+      640,
+      491,
+      744,
+      551
+     ],
+     "depth": [
+      1034,
+      491,
+      1131,
+      557
+     ]
+    },
+    "front": {
+     "src": [
+      640,
+      491,
+      744,
+      551
+     ],
+     "sub": [
+      0,
+      0.7,
+      1,
+      1
+     ]
+    },
+    "left": {
+     "src": [
+      640,
+      491,
+      744,
+      551
+     ],
+     "sub": [
+      0,
+      0.1,
+      0.2,
+      0.9
+     ]
+    },
+    "right": {
+     "src": [
+      640,
+      491,
+      744,
+      551
+     ],
+     "sub": [
+      0.8,
+      0.1,
+      1,
+      0.9
+     ]
+    },
+    "*": {
+     "src": [
+      640,
+      491,
+      744,
+      551
+     ],
+     "sub": [
+      0.2,
+      0.2,
+      0.8,
+      0.8
+     ]
+    }
+   }
+  },
+  {
+   "id": "back_cushion_1",
+   "kind": "box",
+   "min": [
+    -0.82,
+    0.11,
+    0.3
+   ],
+   "max": [
+    -0.2733,
+    0.25,
+    0.81
+   ],
+   "class": "soft",
+   "parent": "back_frame",
+   "faces": {
+    "front": {
+     "src": [
+      433,
+      422,
+      534,
+      489
+     ],
+     "depth": [
+      834,
+      427,
+      929,
+      489
+     ]
+    },
+    "top": {
+     "src": [
+      433,
+      422,
+      534,
+      489
+     ],
+     "sub": [
+      0,
+      0,
+      1,
+      0.25
+     ]
+    },
+    "left": {
+     "src": [
+      433,
+      422,
+      534,
+      489
+     ],
+     "sub": [
+      0,
+      0.1,
+      0.2,
+      0.9
+     ]
+    },
+    "right": {
+     "src": [
+      433,
+      422,
+      534,
+      489
+     ],
+     "sub": [
+      0.8,
+      0.1,
+      1,
+      0.9
+     ]
+    },
+    "*": {
+     "src": [
+      433,
+      422,
+      534,
+      489
+     ],
+     "sub": [
+      0.2,
+      0.2,
+      0.8,
+      0.8
+     ]
+    }
+   }
+  },
+  {
+   "id": "back_cushion_2",
+   "kind": "box",
+   "min": [
+    -0.2733,
+    0.11,
+    0.3
+   ],
+   "max": [
+    0.2733,
+    0.25,
+    0.81
+   ],
+   "class": "soft",
+   "parent": "back_frame",
+   "faces": {
+    "front": {
+     "src": [
+      538,
+      422,
+      635,
+      486
+     ],
+     "depth": [
+      939,
+      427,
+      1030,
+      489
+     ]
+    },
+    "top": {
+     "src": [
+      538,
+      422,
+      635,
+      486
+     ],
+     "sub": [
+      0,
+      0,
+      1,
+      0.25
+     ]
+    },
+    "left": {
+     "src": [
+      538,
+      422,
+      635,
+      486
+     ],
+     "sub": [
+      0,
+      0.1,
+      0.2,
+      0.9
+     ]
+    },
+    "right": {
+     "src": [
+      538,
+      422,
+      635,
+      486
+     ],
+     "sub": [
+      0.8,
+      0.1,
+      1,
+      0.9
+     ]
+    },
+    "*": {
+     "src": [
+      538,
+      422,
+      635,
+      486
+     ],
+     "sub": [
+      0.2,
+      0.2,
+      0.8,
+      0.8
+     ]
+    }
+   }
+  },
+  {
+   "id": "back_cushion_3",
+   "kind": "box",
+   "min": [
+    0.2733,
+    0.11,
+    0.3
+   ],
+   "max": [
+    0.82,
+    0.25,
+    0.81
+   ],
+   "class": "soft",
+   "parent": "back_frame",
+   "faces": {
+    "front": {
+     "src": [
+      638,
+      422,
+      741,
+      487
+     ],
+     "depth": [
+      1030,
+      427,
+      1124,
+      489
+     ]
+    },
+    "top": {
+     "src": [
+      638,
+      422,
+      741,
+      487
+     ],
+     "sub": [
+      0,
+      0,
+      1,
+      0.25
+     ]
+    },
+    "left": {
+     "src": [
+      638,
+      422,
+      741,
+      487
+     ],
+     "sub": [
+      0,
+      0.1,
+      0.2,
+      0.9
+     ]
+    },
+    "right": {
+     "src": [
+      638,
+      422,
+      741,
+      487
+     ],
+     "sub": [
+      0.8,
+      0.1,
+      1,
+      0.9
+     ]
+    },
+    "*": {
+     "src": [
+      638,
+      422,
+      741,
+      487
+     ],
+     "sub": [
+      0.2,
+      0.2,
+      0.8,
+      0.8
+     ]
+    }
+   }
+  },
+  {
+   "id": "leg_1",
+   "kind": "cylinder",
+   "cap_face": "bottom",
+   "centre": [
+    -0.905,
+    -0.37,
+    0.0
+   ],
+   "radius": 0.022,
+   "length": 0.14,
+   "class": "support",
+   "parent": "arm_l",
+   "cap": {
+    "src": [
+     752,
+     476,
+     763,
+     525
+    ],
+    "sub": [
+     0,
+     0.82,
+     1,
+     1
+    ]
+   },
+   "wrap": {
+    "src": [
+     752,
+     476,
+     763,
+     525
+    ]
+   }
+  },
+  {
+   "id": "leg_2",
+   "kind": "cylinder",
+   "cap_face": "bottom",
+   "centre": [
+    0.905,
+    -0.37,
+    0.0
+   ],
+   "radius": 0.022,
+   "length": 0.14,
+   "class": "support",
+   "parent": "arm_r",
+   "cap": {
+    "src": [
+     772,
+     475,
+     781,
+     528
+    ],
+    "sub": [
+     0,
+     0.82,
+     1,
+     1
+    ]
+   },
+   "wrap": {
+    "src": [
+     772,
+     475,
+     781,
+     528
+    ]
+   }
+  },
+  {
+   "id": "leg_3",
+   "kind": "cylinder",
+   "cap_face": "bottom",
+   "centre": [
+    -0.905,
+    0.37,
+    0.0
+   ],
+   "radius": 0.022,
+   "length": 0.14,
+   "class": "support",
+   "parent": "arm_l",
+   "cap": {
+    "src": [
+     756,
+     538,
+     770,
+     574
+    ],
+    "sub": [
+     0,
+     0.82,
+     1,
+     1
+    ]
+   },
+   "wrap": {
+    "src": [
+     756,
+     538,
+     770,
+     574
+    ]
+   }
+  },
+  {
+   "id": "leg_4",
+   "kind": "cylinder",
+   "cap_face": "bottom",
+   "centre": [
+    0.905,
+    0.37,
+    0.0
+   ],
+   "radius": 0.022,
+   "length": 0.14,
+   "class": "support",
+   "parent": "arm_r",
+   "cap": {
+    "src": [
+     775,
+     538,
+     788,
+     575
+    ],
+    "sub": [
+     0,
+     0.82,
+     1,
+     1
+    ]
+   },
+   "wrap": {
+    "src": [
+     775,
+     538,
+     788,
+     575
+    ]
+   }
+  }
+ ],
+ "orthographic": {
+  "source": "source_sheet.webp",
+  "pixels_per_metre": 200,
+  "views": {
+   "front": [
+    1091,
+    51,
+    1322,
+    141
+   ],
+   "back": [
+    1091,
+    164,
+    1322,
+    255
+   ],
+   "right": [
+    1382,
+    42,
+    1487,
+    141
+   ],
+   "left": [
+    1385,
+    160,
+    1490,
+    255
+   ],
+   "top": [
+    1091,
+    276,
+    1302,
+    350
+   ],
+   "bottom": [
+    1325,
+    274,
+    1512,
+    347
+   ]
+  }
+ },
+ "concept": "source_sheet.webp",
+ "source_notes": [
+  "Source: ChatGPT concept sheet 'LONG LINES / FACTORY V1 ASSET PACKAGE - 1970s COUCH (SOFA)'. Its maps are 1/3-size panels inside one image and not to scale; panels are resampled to 160 px/m here.",
+  "Proportions from the painted front/side/rear views (arms 17 cm, cushions 55 cm); the sheet's JSON excerpt said 62 cm cushions, which would leave 6 cm arms.",
+  "Faces the sheet does not paint (cushion sides/backs/bottoms, hidden frame faces) reuse fabric from the nearest painted panel.",
+  "The orthographic views are resampled to the declared size; the sheet's top view was about 30% short."
+ ],
+ "assembly_notes": [
+  "Back is vertical: the side views show it raked, and V1 has no rotation yet.",
+  "Not built: tufting buttons (painted on the back cushions; only 4 of 6 painted as parts), tapered legs (cylinders), the draped blanket (no cloth construction).",
+  "Seat base front set 1 cm behind the arm fronts (flush faces z-fight)."
+ ]
+}

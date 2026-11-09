@@ -1,0 +1,66 @@
+name: Sheet-first closed toaster assembly test
+on:
+  push:
+    paths:
+      - ".github/workflows/sheetfirst-toaster-test.yml"
+      - "long-lines/factory/examples/sheetfirst_toaster/**"
+      - "long-lines/tools/toaster_assembly_test.py"
+      - "long-lines/tools/toaster_verify_glb.py"
+  pull_request:
+    paths:
+      - ".github/workflows/sheetfirst-toaster-test.yml"
+      - "long-lines/factory/examples/sheetfirst_toaster/**"
+      - "long-lines/tools/toaster_assembly_test.py"
+      - "long-lines/tools/toaster_verify_glb.py"
+concurrency:
+  group: toaster-test-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  toaster:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install real Blender and image dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y blender python3-pil python3-numpy python3-scipy python3-skimage
+      - name: Syntax check and construct all registered 2D maps
+        run: |
+          /usr/bin/python3 -m py_compile long-lines/factory/examples/sheetfirst_toaster/generate_toaster_maps.py long-lines/tools/toaster_assembly_test.py
+          /usr/bin/python3 long-lines/factory/examples/sheetfirst_toaster/generate_toaster_maps.py
+      - name: Build watertight, colour-displaced toaster and render actual geometry
+        run: |
+          blender -b --factory-startup --python-exit-code 1 -P long-lines/tools/toaster_assembly_test.py -- long-lines/factory/examples/sheetfirst_toaster/manifest.json /tmp/toaster_built
+      - name: Check exported GLB and UVs in a fresh Blender process
+        run: |
+          blender -b --factory-startup --python-exit-code 1 -P long-lines/tools/toaster_verify_glb.py -- /tmp/toaster_built/toaster_1974_sheetfirst_test.glb
+      - name: Verify outputs and assemble full test ZIP
+        run: |
+          /usr/bin/python3 - <<'PY'
+          import json,os,zipfile
+          from PIL import Image
+          root="/tmp/toaster_built"
+          with open(root+"/build_report.json") as f: r=json.load(f)
+          assert r["pass"] and r["watertight_shell_open_edges"] == 0 and r["all_parts_open_edges"] == 0
+          assert r["slot_count"] == 2 and r["test_top_relief_m"] > .0008
+          for suffix in (".glb","_albedo.png","_depth_rgb.png","_parts.png","_manifest.json","_normal.png","_orm.png"):
+              fp=root+"/"+r["asset"]+suffix
+              assert os.path.getsize(fp)>25,fp
+          for name in ("toaster_real_blender_turnaround.png","toaster_uv_guide.png","toaster_six_views.png","toaster_depth_legend.png"):
+              with Image.open(root+"/"+name) as im: im.verify()
+          with zipfile.ZipFile("/tmp/toaster_1974_sheetfirst_build.zip","w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+              for name in sorted(os.listdir(root)):
+                  z.write(os.path.join(root,name),arcname=name)
+          print("ZIP PASS",os.path.getsize("/tmp/toaster_1974_sheetfirst_build.zip"))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sheetfirst-toaster-1974-all-maps-and-glb
+          path: |
+            /tmp/toaster_built/*.png
+            /tmp/toaster_built/*.json
+            /tmp/toaster_built/*.glb
+            /tmp/toaster_1974_sheetfirst_build.zip
+          if-no-files-found: warn

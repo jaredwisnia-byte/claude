@@ -1,0 +1,397 @@
+{
+  "schema": 1,
+  "asset_id": "toaster_1974_sheetfirst_test",
+  "description": "1974 cream and ochre two-slot toaster; paint-first / physically dimensioned / connected assembly",
+  "atlas": {
+    "albedo": "toaster_albedo.png",
+    "depth": "toaster_depth_rgb.png",
+    "parts": "toaster_parts.png",
+    "size_px": [
+      1792,
+      1200
+    ],
+    "roughness": 0.68,
+    "metallic": 0.13
+  },
+  "depth_range_m": {
+    "inward": 0.025,
+    "outward": 0.014
+  },
+  "dimensions_m": {
+    "width": 0.32,
+    "depth": 0.22,
+    "height": 0.198,
+    "body_height": 0.18,
+    "body_base_z": 0.018,
+    "pixels_per_metre": 1600
+  },
+  "panels": [
+    {
+      "name": "front",
+      "size_m": [
+        0.32,
+        0.18
+      ],
+      "rect_px": [
+        64,
+        64,
+        576,
+        352
+      ],
+      "origin_m": [
+        -0.16,
+        -0.11,
+        0.018
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        32,
+        18
+      ]
+    },
+    {
+      "name": "back",
+      "size_m": [
+        0.32,
+        0.18
+      ],
+      "rect_px": [
+        640,
+        64,
+        1152,
+        352
+      ],
+      "origin_m": [
+        0.16,
+        0.11,
+        0.018
+      ],
+      "u_axis": [
+        -1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        32,
+        18
+      ]
+    },
+    {
+      "name": "left",
+      "size_m": [
+        0.22,
+        0.18
+      ],
+      "rect_px": [
+        1200,
+        64,
+        1552,
+        352
+      ],
+      "origin_m": [
+        -0.16,
+        0.11,
+        0.018
+      ],
+      "u_axis": [
+        0,
+        -1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        22,
+        18
+      ]
+    },
+    {
+      "name": "right",
+      "size_m": [
+        0.22,
+        0.18
+      ],
+      "rect_px": [
+        1200,
+        416,
+        1552,
+        704
+      ],
+      "origin_m": [
+        0.16,
+        -0.11,
+        0.018
+      ],
+      "u_axis": [
+        0,
+        1,
+        0
+      ],
+      "v_axis": [
+        0,
+        0,
+        1
+      ],
+      "grid": [
+        22,
+        18
+      ]
+    },
+    {
+      "name": "top",
+      "size_m": [
+        0.32,
+        0.22
+      ],
+      "rect_px": [
+        64,
+        416,
+        576,
+        768
+      ],
+      "origin_m": [
+        -0.16,
+        -0.11,
+        0.198
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        1,
+        0
+      ],
+      "grid": [
+        32,
+        22
+      ]
+    },
+    {
+      "name": "bottom",
+      "size_m": [
+        0.32,
+        0.22
+      ],
+      "rect_px": [
+        640,
+        416,
+        1152,
+        768
+      ],
+      "origin_m": [
+        -0.16,
+        0.11,
+        0.018
+      ],
+      "u_axis": [
+        1,
+        0,
+        0
+      ],
+      "v_axis": [
+        0,
+        -1,
+        0
+      ],
+      "grid": [
+        32,
+        22
+      ]
+    }
+  ],
+  "component_atlas": {
+    "slot_wall": [
+      64,
+      840,
+      416,
+      904
+    ],
+    "slot_floor": [
+      440,
+      840,
+      744,
+      904
+    ],
+    "lever": [
+      770,
+      840,
+      922,
+      992
+    ],
+    "knob": [
+      946,
+      840,
+      1098,
+      992
+    ],
+    "foot": [
+      1122,
+      840,
+      1218,
+      936
+    ]
+  },
+  "assembly": {
+    "type": "sealed_box_with_cavities",
+    "face_order": [
+      "front",
+      "back",
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "pixel_density_px_per_m": 1600,
+    "edge_weld_tolerance_m": 0.00001,
+    "cavities": [
+      {
+        "id": "left_slot",
+        "face": "top",
+        "centre_xy_m": [
+          -0.069,
+          0
+        ],
+        "size_xy_m": [
+          0.036,
+          0.13
+        ],
+        "depth_m": 0.038,
+        "lining": "slot_wall",
+        "floor": "slot_floor"
+      },
+      {
+        "id": "right_slot",
+        "face": "top",
+        "centre_xy_m": [
+          0.069,
+          0
+        ],
+        "size_xy_m": [
+          0.036,
+          0.13
+        ],
+        "depth_m": 0.038,
+        "lining": "slot_wall",
+        "floor": "slot_floor"
+      }
+    ],
+    "attachments": [
+      {
+        "id": "thumb_lever",
+        "type": "box",
+        "face": "right",
+        "centre_m": [
+          0.176,
+          -0.05,
+          0.125
+        ],
+        "size_m": [
+          0.034,
+          0.052,
+          0.024
+        ],
+        "texture": "lever"
+      },
+      {
+        "id": "heat_dial",
+        "type": "cylinder_x",
+        "face": "right",
+        "centre_m": [
+          0.172,
+          0.053,
+          0.089
+        ],
+        "radius_m": 0.024,
+        "depth_m": 0.021,
+        "texture": "knob"
+      },
+      {
+        "id": "foot_front_left",
+        "type": "box",
+        "centre_m": [
+          -0.126,
+          -0.079,
+          0.01
+        ],
+        "size_m": [
+          0.034,
+          0.03,
+          0.02
+        ],
+        "texture": "foot"
+      },
+      {
+        "id": "foot_front_right",
+        "type": "box",
+        "centre_m": [
+          0.126,
+          -0.079,
+          0.01
+        ],
+        "size_m": [
+          0.034,
+          0.03,
+          0.02
+        ],
+        "texture": "foot"
+      },
+      {
+        "id": "foot_back_left",
+        "type": "box",
+        "centre_m": [
+          -0.126,
+          0.079,
+          0.01
+        ],
+        "size_m": [
+          0.034,
+          0.03,
+          0.02
+        ],
+        "texture": "foot"
+      },
+      {
+        "id": "foot_back_right",
+        "type": "box",
+        "centre_m": [
+          0.126,
+          0.079,
+          0.01
+        ],
+        "size_m": [
+          0.034,
+          0.03,
+          0.02
+        ],
+        "texture": "foot"
+      }
+    ],
+    "expected_shell_open_edges": 0
+  },
+  "color_legend": {
+    "white": "zero displacement",
+    "red": "inward by at most 25 mm",
+    "blue": "outward by at most 14 mm",
+    "interpretation": "signed normal displacement sampled in each physical face's local frame"
+  }
+}

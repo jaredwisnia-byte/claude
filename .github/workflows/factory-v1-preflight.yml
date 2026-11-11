@@ -1,0 +1,66 @@
+name: FACTORY_V1 package preflight
+
+on:
+  push:
+    paths:
+      - ".github/workflows/factory-v1-preflight.yml"
+      - "long-lines/factory/FACTORY_V1.md"
+      - "long-lines/factory/map_spec.md"
+      - "long-lines/factory/factory_prompt.md"
+      - "long-lines/factory/schemas/**"
+      - "long-lines/factory/examples/factory_v1_crt_tv/**"
+      - "long-lines/tools/validate_package.py"
+      - "long-lines/tests/test_factory_v1_package.py"
+  pull_request:
+    paths:
+      - ".github/workflows/factory-v1-preflight.yml"
+      - "long-lines/factory/FACTORY_V1.md"
+      - "long-lines/factory/map_spec.md"
+      - "long-lines/factory/factory_prompt.md"
+      - "long-lines/factory/schemas/**"
+      - "long-lines/factory/examples/factory_v1_crt_tv/**"
+      - "long-lines/tools/validate_package.py"
+      - "long-lines/tests/test_factory_v1_package.py"
+
+concurrency:
+  group: factory-v1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install validator dependencies
+        run: python -m pip install 'Pillow>=10' 'jsonschema>=4.18'
+      - name: Check schema files and source compile
+        run: |
+          python -m py_compile long-lines/tools/validate_package.py long-lines/factory/examples/factory_v1_crt_tv/generate_demo_maps.py long-lines/tests/test_factory_v1_package.py
+          python - <<'PY'
+          import json
+          from jsonschema import Draft202012Validator
+          for name in ('asset_schema','assembly_schema'):
+              with open('long-lines/factory/schemas/'+name+'.json') as f:
+                  Draft202012Validator.check_schema(json.load(f))
+              print('VALID_SCHEMA', name)
+          PY
+      - name: Validate CRT package and write QA report
+        run: |
+          python long-lines/factory/examples/factory_v1_crt_tv/generate_demo_maps.py
+          python long-lines/tools/validate_package.py long-lines/factory/examples/factory_v1_crt_tv/asset.json --report /tmp/factory_v1_qa.json
+      - name: Run positive and negative package checks
+        run: python -m unittest discover -s long-lines/tests -p 'test_factory_v1_package.py' -v
+      - name: Upload reference maps and preflight report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factory-v1-crt-preflight
+          path: |
+            long-lines/factory/examples/factory_v1_crt_tv/*.png
+            long-lines/factory/examples/factory_v1_crt_tv/asset.json
+            long-lines/factory/examples/factory_v1_crt_tv/assembly.json
+            /tmp/factory_v1_qa.json
+          if-no-files-found: warn

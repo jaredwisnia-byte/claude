@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Long Lines FACTORY_V1 assembly plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "asset_id",
+    "expected_manifold",
+    "parts",
+    "connections",
+    "cavities"
+  ],
+  "properties": {
+    "format": {
+      "const": "FACTORY_V1_ASSEMBLY"
+    },
+    "asset_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,63}$"
+    },
+    "expected_manifold": {
+      "type": "boolean"
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "construction",
+          "panels",
+          "closed_solid",
+          "semantic_class"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/name"
+          },
+          "construction": {
+            "type": "string",
+            "enum": [
+              "closed_box",
+              "panel_shell",
+              "cylinder",
+              "sweep",
+              "lathe",
+              "applique",
+              "cavity_liner"
+            ]
+          },
+          "panels": {
+            "type": "array",
+            "maxItems": 64,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/name"
+            }
+          },
+          "closed_solid": {
+            "type": "boolean"
+          },
+          "parent": {
+            "$ref": "#/$defs/name"
+          },
+          "anchor_m": {
+            "$ref": "#/$defs/vector3"
+          },
+          "dimensions_m": {
+            "$ref": "#/$defs/positive_vector3"
+          },
+          "rotation_deg": {
+            "$ref": "#/$defs/vector3"
+          },
+          "semantic_class": {
+            "type": "string",
+            "enum": [
+              "main_body",
+              "moving_part",
+              "raised_hard",
+              "cavity",
+              "glass",
+              "soft",
+              "trim",
+              "support"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "connections": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "a",
+          "a_edge",
+          "b",
+          "b_edge",
+          "operation"
+        ],
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/name"
+          },
+          "a_edge": {
+            "$ref": "#/$defs/edge"
+          },
+          "b": {
+            "$ref": "#/$defs/name"
+          },
+          "b_edge": {
+            "$ref": "#/$defs/edge"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "weld",
+              "fold",
+              "hinge",
+              "fasten"
+            ]
+          },
+          "tolerance_m": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 0.05
+          }
+        }
+      }
+    },
+    "cavities": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "owner_part",
+          "opening_panel",
+          "shape",
+          "centre_uv",
+          "size_m",
+          "depth_m",
+          "closed_bottom"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/name"
+          },
+          "owner_part": {
+            "$ref": "#/$defs/name"
+          },
+          "opening_panel": {
+            "$ref": "#/$defs/name"
+          },
+          "shape": {
+            "type": "string",
+            "enum": [
+              "rect",
+              "ellipse"
+            ]
+          },
+          "centre_uv": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "size_m": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "depth_m": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "closed_bottom": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "assembly_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{1,63}$"
+    },
+    "edge": {
+      "type": "string",
+      "enum": [
+        "u0",
+        "u1",
+        "v0",
+        "v1"
+      ]
+    },
+    "vector3": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "positive_vector3": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "minItems": 3,
+      "maxItems": 3
+    }
+  }
+}

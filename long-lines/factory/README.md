@@ -1,5 +1,25 @@
 # The asset factory
 
+## FACTORY_V1 — structured paint-first package preflight
+
+The ChatGPT project command `/factory [object description]` uses the
+[FACTORY_V1 package specification](FACTORY_V1.md), the
+[standard image-map palette](map_spec.md), the
+[reusable prompt](factory_prompt.md), and two JSON schemas in `schemas/`.
+
+This is an **input validation layer**, not a replacement for the existing
+asset production lines. Run `tools/validate_package.py` on `asset.json`
+before any Blender build. A passing preflight does **not** prove a GLB is
+watertight or game-ready. The source of truth is the dimensioned UV net;
+the old image-projection factory is retained for comparative testing.
+
+To validate the synthetic CRT sample without Blender:
+
+```bash
+python long-lines/factory/examples/factory_v1_crt_tv/generate_demo_maps.py
+python long-lines/tools/validate_package.py long-lines/factory/examples/factory_v1_crt_tv/asset.json
+```
+
 The factory is the product; the models are its output. This folder holds the factory's
 standards, work orders, ledger and report. The machinery is in `tools/`.
 

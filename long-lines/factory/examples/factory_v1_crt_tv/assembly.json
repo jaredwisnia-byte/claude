@@ -1,0 +1,204 @@
+{
+  "format": "FACTORY_V1_ASSEMBLY",
+  "asset_id": "crt_tv_1974_demo",
+  "expected_manifold": true,
+  "parts": [
+    {
+      "id": "body",
+      "construction": "closed_box",
+      "panels": [
+        "front",
+        "back",
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      "closed_solid": true,
+      "semantic_class": "main_body",
+      "notes": "Six panels form a welded solid cabinet. Rear panel and underside are real."
+    },
+    {
+      "id": "screen_glass",
+      "construction": "applique",
+      "panels": [
+        "screen_face"
+      ],
+      "closed_solid": false,
+      "parent": "body",
+      "anchor_m": [
+        -0.255,
+        -0.226,
+        0.08
+      ],
+      "dimensions_m": [
+        0.39,
+        0.01,
+        0.3
+      ],
+      "semantic_class": "glass",
+      "notes": "Curved CRT glass should be a 3D shallow bulged insert in the Blender builder, not mere paint."
+    },
+    {
+      "id": "dial_1",
+      "construction": "cylinder",
+      "panels": [
+        "dial_face_1"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.232,
+        -0.234,
+        0.3
+      ],
+      "dimensions_m": [
+        0.05,
+        0.027,
+        0.05
+      ],
+      "semantic_class": "raised_hard"
+    },
+    {
+      "id": "dial_2",
+      "construction": "cylinder",
+      "panels": [
+        "dial_face_2"
+      ],
+      "closed_solid": true,
+      "parent": "body",
+      "anchor_m": [
+        0.232,
+        -0.234,
+        0.18
+      ],
+      "dimensions_m": [
+        0.05,
+        0.027,
+        0.05
+      ],
+      "semantic_class": "raised_hard"
+    }
+  ],
+  "connections": [
+    {
+      "a": "front",
+      "a_edge": "u0",
+      "b": "left",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "u1",
+      "b": "right",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "front",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "v1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "u1",
+      "b": "left",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "u0",
+      "b": "right",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "v1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "back",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "v0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "left",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "left",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "u0",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "right",
+      "a_edge": "v1",
+      "b": "top",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    },
+    {
+      "a": "right",
+      "a_edge": "v0",
+      "b": "bottom",
+      "b_edge": "u1",
+      "operation": "weld",
+      "tolerance_m": 0.0005
+    }
+  ],
+  "cavities": [
+    {
+      "id": "screen_recess",
+      "owner_part": "body",
+      "opening_panel": "front",
+      "shape": "rect",
+      "centre_uv": [
+        0.395,
+        0.515
+      ],
+      "size_m": [
+        0.4,
+        0.31
+      ],
+      "depth_m": 0.012,
+      "closed_bottom": true,
+      "notes": "Needs physical bezel and a cavity lining; paint-only dark rectangle does not count."
+    }
+  ],
+  "assembly_notes": [
+    "Synthetic sample only: validator checks the plan but does not build this object.",
+    "Concealed faces and joins are explicitly declared, avoiding the previous benchmark's floating/open panels."
+  ]
+}
